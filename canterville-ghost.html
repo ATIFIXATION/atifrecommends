@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Canterville Ghost — My Way</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Patrick+Hand&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f2eb;
+    --off-white: #ece9e0;
+    --light-gray: #d4d0c8;
+    --mid-gray: #8a8680;
+    --dark-gray: #2a2724;
+    --ink: #1a1714;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--black);
+    color: var(--ink);
+    font-family: 'Cormorant Garamond', serif;
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  /* GRAIN OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.045;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 180px;
+  }
+
+  /* LANDING SECTION */
+  .landing {
+    min-height: 100vh;
+    background-color: var(--black);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0 8vw;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .landing::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--mid-gray), transparent);
+  }
+
+  .landing-ghost-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(5rem, 12vw, 14rem);
+    font-weight: 700;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(245, 242, 235, 0.08);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    letter-spacing: -0.02em;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .landing-eyebrow {
+    font-family: 'Patrick Hand', cursive;
+    font-size: clamp(0.85rem, 1.5vw, 1.1rem);
+    color: var(--mid-gray);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 1s ease 0.3s forwards;
+  }
+
+  .landing-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 6vw, 7rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    max-width: 900px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 1.1s ease 0.5s forwards;
+  }
+
+  .landing-title em {
+    font-style: italic;
+    color: var(--light-gray);
+  }
+
+  .landing-subtitle {
+    font-family: 'Caveat', cursive;
+    font-size: clamp(1.1rem, 2.5vw, 2rem);
+    color: var(--mid-gray);
+    margin-top: 1.5rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 1s ease 0.8s forwards;
+  }
+
+  .landing-meta {
+    position: absolute;
+    bottom: 4rem;
+    right: 8vw;
+    text-align: right;
+    opacity: 0;
+    animation: fadeUp 1s ease 1.2s forwards;
+  }
+
+  .landing-meta p {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 0.9rem;
+    color: var(--mid-gray);
+    line-height: 1.8;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 4rem;
+    left: 8vw;
+    opacity: 0;
+    animation: fadeUp 1s ease 1.5s forwards;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .scroll-hint span {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 0.8rem;
+    color: var(--mid-gray);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, var(--mid-gray), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.2); }
+  }
+
+  /* PAGE DIVIDER */
+  .page-divider {
+    width: 100%;
+    height: 80px;
+    background-color: var(--black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page-divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    right: 5%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--dark-gray) 20%, var(--dark-gray) 80%, transparent);
+  }
+
+  .page-divider .chapter-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--mid-gray);
+    background-color: var(--black);
+    padding: 0 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* CHAPTER SECTIONS */
+  .chapter {
+    background-color: var(--white);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .chapter-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6rem 8vw;
+  }
+
+  .chapter-header {
+    margin-bottom: 3rem;
+  }
+
+  .chapter-num {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 0.85rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--mid-gray);
+    margin-bottom: 0.8rem;
+    display: block;
+  }
+
+  .chapter-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  .chapter-title em {
+    font-style: italic;
+    color: var(--dark-gray);
+  }
+
+  .chapter-tagline {
+    font-family: 'Caveat', cursive;
+    font-size: clamp(1.1rem, 2vw, 1.6rem);
+    color: var(--mid-gray);
+    margin-top: 1rem;
+    font-weight: 400;
+  }
+
+  .chapter-body {
+    font-family: 'Caveat', cursive;
+    font-size: clamp(1.1rem, 1.8vw, 1.45rem);
+    color: var(--dark-gray);
+    line-height: 1.85;
+  }
+
+  .chapter-body p {
+    margin-bottom: 1.4rem;
+  }
+
+  .punch {
+    font-family: 'Patrick Hand', cursive;
+    font-size: clamp(0.85rem, 1.3vw, 1.05rem);
+    color: var(--mid-gray);
+    border-left: 2px solid var(--light-gray);
+    padding-left: 1.2rem;
+    margin: 2rem 0;
+    font-style: italic;
+    display: block;
+  }
+
+  /* VISUAL VARIATIONS PER CHAPTER */
+
+  /* Chapter 1 — full white, tight layout */
+  .ch1 {
+    background-color: var(--white);
+  }
+
+  .ch1 .chapter-inner {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .ch1 .chapter-header {
+    position: sticky;
+    top: 3rem;
+  }
+
+  /* Chapter 2 — off-white, bordered card */
+  .ch2 {
+    background-color: var(--black);
+  }
+
+  .ch2 .chapter-inner {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+
+  .ch2 .chapter-card {
+    background-color: var(--off-white);
+    border: 1px solid var(--light-gray);
+    padding: 3.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .ch2 .chapter-card::before {
+    content: '';
+    position: absolute;
+    top: 8px; left: 8px; right: -8px; bottom: -8px;
+    border: 1px solid rgba(255,255,255,0.07);
+    pointer-events: none;
+  }
+
+  .ch2 .chapter-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 28px,
+      rgba(0,0,0,0.04) 28px,
+      rgba(0,0,0,0.04) 29px
+    );
+    pointer-events: none;
+  }
+
+  /* Chapter 3 — split layout, large number */
+  .ch3 {
+    background-color: var(--white);
+  }
+
+  .ch3 .chapter-inner {
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+    position: relative;
+  }
+
+  .ch3 .bg-number {
+    position: absolute;
+    top: -1rem;
+    right: 6vw;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(8rem, 20vw, 22rem);
+    font-weight: 700;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(0,0,0,0.06);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+    letter-spacing: -0.05em;
+  }
+
+  .ch3 .content-wrap {
+    max-width: 680px;
+  }
+
+  /* Chapter 4 — notebook spiral feel */
+  .ch4 {
+    background-color: var(--off-white);
+    border-top: 1px solid var(--light-gray);
+    border-bottom: 1px solid var(--light-gray);
+  }
+
+  .ch4 .chapter-inner {
+    padding-left: calc(8vw + 50px);
+    position: relative;
+  }
+
+  .ch4 .spiral-line {
+    position: absolute;
+    left: calc(8vw + 18px);
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: repeating-linear-gradient(
+      to bottom,
+      var(--light-gray) 0px,
+      var(--light-gray) 4px,
+      transparent 4px,
+      transparent 10px
+    );
+  }
+
+  .ch4 .spiral-dots {
+    position: absolute;
+    left: calc(8vw + 2px);
+    top: 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .ch4 .spiral-dot {
+    width: 30px;
+    height: 14px;
+    border: 1px solid var(--light-gray);
+    border-radius: 50%;
+    background: var(--white);
+  }
+
+  /* Chapter 5 — inverted section */
+  .ch5 {
+    background-color: var(--ink);
+    color: var(--white);
+  }
+
+  .ch5 .chapter-num {
+    color: var(--mid-gray);
+  }
+
+  .ch5 .chapter-title {
+    color: var(--white);
+  }
+
+  .ch5 .chapter-title em {
+    color: var(--light-gray);
+  }
+
+  .ch5 .chapter-tagline {
+    color: var(--mid-gray);
+  }
+
+  .ch5 .chapter-body {
+    color: var(--off-white);
+  }
+
+  .ch5 .punch {
+    color: var(--light-gray);
+    border-left-color: var(--dark-gray);
+  }
+
+  .ch5 .chapter-inner {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  /* Chapter 6 — centered, editorial */
+  .ch6 {
+    background-color: var(--white);
+  }
+
+  .ch6 .chapter-inner {
+    text-align: center;
+    max-width: 750px;
+  }
+
+  .ch6 .chapter-body {
+    text-align: left;
+  }
+
+  .ch6 .chapter-title {
+    font-size: clamp(2.5rem, 5vw, 5rem);
+  }
+
+  .ch6 .rule-line {
+    width: 60px;
+    height: 1px;
+    background-color: var(--ink);
+    margin: 2rem auto;
+  }
+
+  /* Chapter 7 — ending section, dramatic */
+  .ch7 {
+    background-color: var(--black);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ch7::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 300px;
+    background: linear-gradient(to bottom, rgba(245,242,235,0.03), transparent);
+  }
+
+  .ch7 .chapter-inner {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+    position: relative;
+  }
+
+  .ch7 .chapter-num {
+    color: var(--mid-gray);
+  }
+
+  .ch7 .chapter-title {
+    color: var(--white);
+    font-size: clamp(2.8rem, 6vw, 6rem);
+  }
+
+  .ch7 .chapter-title em {
+    color: var(--light-gray);
+  }
+
+  .ch7 .chapter-tagline {
+    color: var(--mid-gray);
+  }
+
+  .ch7 .chapter-body {
+    color: var(--off-white);
+    max-width: 720px;
+  }
+
+  .ch7 .punch {
+    color: var(--light-gray);
+    border-left-color: rgba(255,255,255,0.15);
+  }
+
+  .ch7 .end-note {
+    margin-top: 5rem;
+    padding-top: 3rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .ch7 .end-note p {
+    font-family: 'Caveat', cursive;
+    font-size: clamp(1.3rem, 2.5vw, 2rem);
+    color: var(--mid-gray);
+    max-width: 600px;
+    line-height: 1.7;
+  }
+
+  .ch7 .end-note .final-sign {
+    margin-top: 2rem;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: rgba(245,242,235,0.2);
+  }
+
+  /* STICKY NOTE COMPONENT */
+  .sticky-note {
+    background-color: var(--off-white);
+    border: 1px solid var(--light-gray);
+    padding: 1.4rem 1.6rem;
+    font-family: 'Caveat', cursive;
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    color: var(--dark-gray);
+    line-height: 1.7;
+    position: relative;
+    margin: 2rem 0;
+    max-width: 380px;
+  }
+
+  .sticky-note::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 20px;
+    background-color: var(--light-gray);
+    opacity: 0.6;
+  }
+
+  .ch5 .sticky-note,
+  .ch7 .sticky-note {
+    background-color: rgba(255,255,255,0.05);
+    border-color: rgba(255,255,255,0.1);
+    color: var(--off-white);
+  }
+
+  .ch5 .sticky-note::before,
+  .ch7 .sticky-note::before {
+    background-color: rgba(255,255,255,0.1);
+  }
+
+  /* UNDERLINE SCRIBBLE */
+  .scribble-underline {
+    text-decoration: underline;
+    text-decoration-style: wavy;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+  }
+
+  /* SCROLL REVEAL ANIMATION */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-left {
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+
+  .reveal-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* FOOTER */
+  .footer {
+    background-color: var(--black);
+    padding: 4rem 8vw;
+    border-top: 1px solid var(--dark-gray);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer p {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 0.85rem;
+    color: var(--mid-gray);
+    letter-spacing: 0.1em;
+  }
+
+  .footer .brand {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: rgba(245,242,235,0.3);
+    font-size: 1.1rem;
+  }
+
+  /* NAV DOT */
+  .side-nav {
+    position: fixed;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    z-index: 100;
+  }
+
+  .side-nav a {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: rgba(255,255,255,0.2);
+    display: block;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .side-nav a:hover,
+  .side-nav a.active {
+    background-color: var(--white);
+    transform: scale(1.5);
+  }
+
+  .side-nav a::after {
+    content: attr(data-label);
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Patrick Hand', cursive;
+    font-size: 0.7rem;
+    color: var(--mid-gray);
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .side-nav a:hover::after {
+    opacity: 1;
+  }
+
+  /* KEYFRAMES */
+  @keyframes fadeUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    .ch1 .chapter-inner {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .ch1 .chapter-header {
+      position: static;
+    }
+
+    .ch5 .chapter-inner {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .ch4 .spiral-dots {
+      display: none;
+    }
+
+    .ch2 .chapter-card {
+      padding: 2rem;
+    }
+
+    .side-nav {
+      display: none;
+    }
+
+    .landing-meta {
+      display: none;
+    }
+
+    .footer {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .chapter-inner {
+      padding: 4rem 6vw;
+    }
+
+    .ch4 .chapter-inner {
+      padding-left: 6vw;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- SIDE NAV -->
+<nav class="side-nav" aria-label="Chapter navigation">
+  <a href="#landing" data-label="Cover"></a>
+  <a href="#ch1" data-label="Chapter I"></a>
+  <a href="#ch2" data-label="Chapter II"></a>
+  <a href="#ch3" data-label="Chapter III"></a>
+  <a href="#ch4" data-label="Chapter IV"></a>
+  <a href="#ch5" data-label="Chapter V"></a>
+  <a href="#ch6" data-label="Chapter VI"></a>
+  <a href="#ch7" data-label="Chapter VII"></a>
+</nav>
+
+<!-- LANDING -->
+<section class="landing" id="landing">
+  <div class="landing-ghost-text">GHOST</div>
+  <p class="landing-eyebrow">Oscar Wilde &mdash; My Notes</p>
+  <h1 class="landing-title">The Canterville<br><em>Ghost</em></h1>
+  <p class="landing-subtitle">— read it, felt it, wrote it down</p>
+
+  <div class="landing-meta">
+    <p>7 chapters</p>
+    <p>one ghost</p>
+    <p>zero sympathy from Americans</p>
+    <p>(until the very end)</p>
+  </div>
+
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <span>scroll</span>
+  </div>
+</section>
+
+<!-- DIVIDER 1 -->
+<div class="page-divider">
+  <span class="chapter-number">Chapter I</span>
+</div>
+
+<!-- CHAPTER 1 -->
+<section class="chapter ch1" id="ch1">
+  <div class="chapter-inner">
+    <div class="chapter-header reveal-left">
+      <span class="chapter-num">Chapter One</span>
+      <h2 class="chapter-title">The <em>House</em> That Warned Everyone</h2>
+      <p class="chapter-tagline">— but nobody listened, classic</p>
+    </div>
+
+    <div class="chapter-body reveal">
+      <p>An American family moves into Canterville Chase. Just like that. Bold move. Lord Canterville literally tells them — "bhai, there's a ghost" — and they're like, "sure, whatever, we'll handle it." Very American energy.</p>
+
+      <p>Mr. Hiram B. Otis is the kind of man who thinks everything can be fixed with money or practicality. He buys the haunted estate like he's picking up furniture from IKEA. His wife is calm, his kids are chaotic, and Virginia — their daughter — she's quiet. She's the one you should watch.</p>
+
+      <span class="punch">First impression of the family: smart, noisy, and completely unbothered by the supernatural. Honestly kind of iconic.</span>
+
+      <div class="sticky-note">
+        — there's a bloodstain on the floor. old. permanent. housekeeper says it's from the ghost's wife. Otis just... cleans it. next morning it's back. he cleans it again. the ghost is watching all of this. I think he was offended lmao.
+      </div>
+
+      <p>The bloodstain keeps coming back. Different colors each time. The family turns it into a joke. This is where Wilde tells you: these people and this ghost are going to have a very bad time understanding each other. (Yaar, ye shuru hi nahi hua abhi.)</p>
+    </div>
+  </div>
+</section>
+
+<!-- DIVIDER 2 -->
+<div class="page-divider">
+  <span class="chapter-number">Chapter II</span>
+</div>
+
+<!-- CHAPTER 2 -->
+<section class="chapter ch2" id="ch2">
+  <div class="chapter-inner">
+    <div class="chapter-card reveal">
+      <span class="chapter-num">Chapter Two</span>
+      <h2 class="chapter-title">The Ghost Makes His <em>Entrance</em></h2>
+      <p class="chapter-tagline">— and gets absolutely humiliated</p>
+
+      <div class="chapter-body" style="margin-top: 2rem;">
+        <p>Sir Simon de Canterville finally decides to haunt. He's been doing this for three hundred years. He has a whole routine. Clanking chains, ghostly moans, dramatic cape, the works. He comes out at midnight like he's headlining a concert.</p>
+
+        <p>Mr. Otis hears the chains. Gets out of bed. Offers the ghost lubricating oil for the chains. "They're making noise, sir. Here's some Tammany Rising Sun Lubricator." He literally gives the ghost oil. And walks back to bed. The ghost stands there, probably having an existential crisis.</p>
+
+        <span class="punch">Three hundred years of haunting. Zero respect received. This was not in the contract.</span>
+
+        <p>So the ghost retreats. He's confused. He's frustrated. He goes back to his secret chamber and reads old haunting case studies from 1584. He decides he needs to try harder. He will terrify them. He will not be ignored.</p>
+
+        <div class="sticky-note" style="max-width: 100%;">
+          Side note — Wilde is making fun of America vs Europe here. The ghost represents old aristocratic tradition, history, mystery. Otis represents new-world practicality that has no patience for the past. Lowkey deep.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIVIDER 3 -->
+<div class="page-divider">
+  <span class="chapter-number">Chapter III</span>
+</div>
+
+<!-- CHAPTER 3 -->
+<section class="chapter ch3" id="ch3">
+  <div class="chapter-inner">
+    <div class="bg-number">III</div>
+    <div class="content-wrap reveal">
+      <span class="chapter-num">Chapter Three</span>
+      <h2 class="chapter-title">Repeated <em>Failure</em> Is Also a Character Arc</h2>
+      <p class="chapter-tagline">— the ghost tries everything. nothing works.</p>
+
+      <div class="chapter-body" style="margin-top: 2.5rem;">
+        <p>Sir Simon puts on his most terrifying performance yet. The one he used in 1764 that made a housekeeper faint for three days. He picks his scariest outfit. Rehearses his best scream. Goes out again.</p>
+
+        <p>The twins — these absolute menaces — set up a trip wire. He falls. They hit him with a pillow. They laugh. They actually laugh at the ghost. He goes back to his room and cries. I felt that.</p>
+
+        <span class="punch">There's something genuinely sad about someone whose entire identity is their ability to frighten people — and then discovering that nobody is afraid of them anymore.</span>
+
+        <p>He tries disguises. Different haunting personas. Lady Stanhope. Headless Earl. He practices in the mirror. He is, in secret, deeply insecure. Wilde gives this ghost real feelings and it hits differently once you notice it.</p>
+
+        <p>He even sees what he thinks is another ghost — another horrifying figure in the corridor. He's terrified. He runs. He screams. Turns out the twins built a fake ghost to scare him. He was scared. By a <span class="scribble-underline">fake</span> ghost. The irony is immaculate. (Yaar, bahut bura hua iske saath.)</p>
+
+        <div class="sticky-note">
+          I started actually feeling bad for him here. Wilde does this thing where he makes you laugh and then quietly makes you sad. Rude of him honestly.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIVIDER 4 -->
+<div class="page-divider">
+  <span class="chapter-number">Chapter IV</span>
+</div>
+
+<!-- CHAPTER 4 -->
+<section class="chapter ch4" id="ch4">
+  <div class="chapter-inner">
+    <div class="spiral-line"></div>
+    <div class="spiral-dots">
+      <div class="spiral-dot"></div>
+      <div class="spiral-dot"></div>
+      <div class="spiral-dot"></div>
+      <div class="spiral-dot"></div>
+      <div class="spiral-dot"></div>
+    </div>
+
+    <div class="chapter-header reveal">
+      <span class="chapter-num">Chapter Four</span>
+      <h2 class="chapter-title">Virginia and the <em>Silence Between Them</em></h2>
+      <p class="chapter-tagline">— the chapter where it all shifts</p>
+    </div>
+
+    <div class="chapter-body reveal" style="max-width: 700px; margin-top: 2rem;">
+      <p>Virginia Otis stumbles upon Sir Simon sitting quietly in one of the old rooms. Looking tired. Not scary at all. Just... worn out. She doesn't scream. She doesn't run. She sits down and they talk.</p>
+
+      <p>He tells her he hasn't slept in three hundred years. That he's exhausted. That there's a prophecy — if a golden girl prays for him, if she weeps real tears for his sins, he can finally rest. He's been waiting a very long time for someone to see him as more than a horror story.</p>
+
+      <span class="punch">This is the moment the whole book pivots on. Not a single scare. Just a tired old soul and a girl who was willing to look at him without flinching.</span>
+
+      <div class="sticky-note">
+        Virginia is different from the rest of the family from the start. She's the only one who responds to the ghost with something other than amusement or fear. She responds with attention. And attention is a form of love, isn't it.
+      </div>
+
+      <p>She agrees to help him. They disappear through the wall together. The family panics. Where did she go. The house goes quiet in a way it hasn't been since they arrived.</p>
+
+      <p>This was actually deep. Genuinely. Wilde sneaks the real story into chapter four while you're still laughing at chapters one through three.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DIVIDER 5 -->
+<div class="page-divider">
+  <span class="chapter-number">Chapter V</span>
+</div>
+
+<!-- CHAPTER 5 -->
+<section class="chapter ch5" id="ch5">
+  <div class="chapter-inner">
+    <div class="chapter-left reveal">
+      <span class="chapter-num">Chapter Five</span>
+      <h2 class="chapter-title">The Hours <em>Without Her</em></h2>
+      <p class="chapter-tagline">— absence does more than any ghost ever could</p>
+
+      <div class="chapter-body" style="margin-top: 2.5rem;">
+        <p>Virginia is gone. The family searches every corner of the house. The grounds. The gardens. Nothing. The twins lose their energy. Mr. Otis looks afraid for the first time. Even he doesn't have a practical solution for this one.</p>
+
+        <p>Duke Cecil — the young man who loves Virginia — joins the search. He looks genuinely broken. Hours pass. The house feels different when she's not in it. Canterville Chase becomes, for a moment, actually haunted. Not by Sir Simon. By her absence.</p>
+
+        <span class="punch">Wilde is clever — the ghost was never really the horror. The real fear, in chapter five, is losing someone you love and not knowing where they are.</span>
+
+        <div class="sticky-note">
+          The family is not so practical now. Funny how that happens. Yaar, dil toot gaya unka.
+        </div>
+      </div>
+    </div>
+
+    <div class="chapter-right reveal" style="padding-top: 4rem;">
+      <p style="font-family: 'Caveat', cursive; font-size: clamp(1rem, 1.5vw, 1.3rem); color: var(--mid-gray); line-height: 1.9;">
+        Meanwhile, what is Virginia doing in there. Where is "in there." What happens in the place where ghosts go to rest. Wilde doesn't tell you. You just feel the weight of it. The in-between. The place where something very old finally gets to let go.
+      </p>
+
+      <p style="font-family: 'Caveat', cursive; font-size: clamp(1rem, 1.5vw, 1.3rem); color: var(--mid-gray); line-height: 1.9; margin-top: 1.5rem;">
+        Whatever she did in there — she cried for him. Real tears. For a ghost who murdered his own wife three hundred years ago. For a man who suffered too, in his own cruel way. She held that without flinching.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- DIVIDER 6 -->
+<div class="page-divider">
+  <span class="chapter-number">Chapter VI</span>
+</div>
+
+<!-- CHAPTER 6 -->
+<section class="chapter ch6" id="ch6">
+  <div class="chapter-inner">
+    <div class="reveal">
+      <span class="chapter-num">Chapter Six</span>
+      <h2 class="chapter-title"><em>The Return,<br>The Burial,<br>The Goodbye</em></h2>
+      <div class="rule-line"></div>
+      <p class="chapter-tagline">— three hundred years. finally over.</p>
+    </div>
+
+    <div class="chapter-body reveal" style="margin-top: 2.5rem;">
+      <p>Virginia comes back. The clock strikes midnight. She walks out of the wall, pale, eyes red, holding a small casket of antique jewels Sir Simon left her. She doesn't explain much of what happened. Just — it's done. He's at peace now.</p>
+
+      <p>They find Sir Simon's remains behind a secret door. Bones, old armor. He had been locked in by Virginia's ancestors. Starved. Left in the dark. Wilde finally tells you the full story of what the ghost actually suffered — and suddenly three hundred years of haunting feels less evil and more like something that never got to heal.</p>
+
+      <span class="punch">He wasn't just a murderer haunting a house. He was a wound that never closed. And it took a sixteen-year-old American girl to close it. Lowkey one of the most moving things Wilde ever wrote.</span>
+
+      <p>The family buries him properly. With ceremony and respect. The twins are quiet for once. Mrs. Otis actually weeps. Mr. Otis stands there, and you can tell he understands something he didn't understand at the beginning.</p>
+
+      <div class="sticky-note" style="margin: 2rem auto;">
+        Virginia refuses to tell anyone what she saw or heard behind that wall. Even years later. Some things belong only to the people who lived through them. Wilde understood privacy in grief before it was a concept.
+      </div>
+
+      <p>This chapter is short. It needed to be. Too many words would have ruined it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DIVIDER 7 -->
+<div class="page-divider">
+  <span class="chapter-number">Chapter VII</span>
+</div>
+
+<!-- CHAPTER 7 -->
+<section class="chapter ch7" id="ch7">
+  <div class="chapter-inner">
+    <span class="chapter-num">Chapter Seven</span>
+    <h2 class="chapter-title reveal">Life <em>After</em><br>the Ghost</h2>
+    <p class="chapter-tagline reveal">— things move on. they always do.</p>
+
+    <div class="chapter-body reveal" style="margin-top: 3rem;">
+      <p>Time passes. Virginia marries Cecil. They're happy. Before the wedding, she visits Sir Simon's grave alone, leaves flowers, says goodbye in her own quiet way. This is not described in detail. You just know it happens.</p>
+
+      <p>Cecil, who is sweet and earnest, asks her one last time — what happened behind that wall, Virginia, what did you see. She smiles. She says she can't tell him. He says — you'll have to tell me someday, after we're married. She says — no. Even then.</p>
+
+      <span class="punch">She carries it alone. Not as a burden. As a gift. The one thing that belonged entirely to her and Sir Simon. You can love someone and still keep the parts of yourself that were forged in their company.</span>
+
+      <p>The story ends on the image of them driving away in a carriage. Canterville Chase behind them. Sir Simon finally at rest under his almond tree. The house standing in silence for the first time in three hundred years.</p>
+
+      <p>No haunting. No chains. No bloodstain. Just an old house, an old story, and a girl who was brave enough to look at something broken and offer it tenderness instead of fear.</p>
+
+      <span class="punch">Wilde wrote this as a comic ghost story. But the ending is genuinely beautiful. He couldn't help himself.</span>
+    </div>
+
+    <div class="end-note reveal">
+      <p>You pick up this book expecting to laugh — and you do — but somewhere around chapter four it quietly becomes something else. A story about how old pain needs to be witnessed before it can dissolve. About how the scariest things are often just the saddest things, wearing a disguise.</p>
+
+      <p style="margin-top: 1.5rem;">Read it in one sitting if you can. It earns that.</p>
+
+      <p class="final-sign">— Atif Recommends</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>The Canterville Ghost &mdash; Oscar Wilde &mdash; 1887</p>
+  <p class="brand">Atif Recommends</p>
+  <p>personal reading notes &mdash; not a school project</p>
+</footer>
+
+<script>
+  // SCROLL REVEAL
+  const reveals = document.querySelectorAll('.reveal, .reveal-left');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+  reveals.forEach(el => observer.observe(el));
+
+  // SIDE NAV ACTIVE STATE
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.side-nav a');
+
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${id}`) {
+            link.classList.add('active');
+          }
+        });
+      }
+    });
+  }, { threshold: 0.4 });
+
+  sections.forEach(s => sectionObserver.observe(s));
+
+  // STAGGER REVEAL DELAYS
+  document.querySelectorAll('.chapter-inner .reveal').forEach((el, i) => {
+    el.style.transitionDelay = `${i * 0.07}s`;
+  });
+</script>
+
+</body>
+</html>
