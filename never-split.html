@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<title>Never Split the Difference — Atif Recommends</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --ink: #0d0c0b;
+    --paper: #f7f4ef;
+    --cream: #ede9e1;
+    --gold: #b8965a;
+    --gold-light: #d4b07a;
+    --muted: #9a9085;
+    --red: #8b2318;
+    --warm: #6b5d52;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ─── NOISE OVERLAY ─── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+    opacity: 0.4;
+    pointer-events: none;
+    z-index: 1000;
+  }
+
+  /* ─── TYPOGRAPHY ─── */
+  .serif { font-family: 'Cormorant Garamond', serif; }
+  .mono  { font-family: 'Space Grotesk', sans-serif; }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 0 80px;
+    position: relative;
+    border-bottom: 1px solid rgba(184,150,90,0.2);
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse 60% 40% at 80% 20%, rgba(139,35,24,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 20% 80%, rgba(184,150,90,0.07) 0%, transparent 70%),
+      linear-gradient(160deg, #0d0c0b 0%, #131110 50%, #0d0c0b 100%);
+  }
+
+  .hero-line-top {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--gold), var(--red), transparent);
+  }
+
+  .hero-content {
+    position: relative;
+    padding: 0 60px;
+    max-width: 1100px;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 40px;
+    opacity: 0.8;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(60px, 10vw, 148px);
+    font-weight: 300;
+    line-height: 0.9;
+    letter-spacing: -2px;
+    color: var(--paper);
+    margin-bottom: 8px;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 2.5vw, 28px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--muted);
+    margin: 32px 0 60px;
+    letter-spacing: 0.5px;
+  }
+
+  .hero-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(20px, 2.8vw, 32px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--paper);
+    max-width: 680px;
+    line-height: 1.4;
+    padding-left: 24px;
+    border-left: 2px solid var(--gold);
+  }
+
+  .hero-meta {
+    margin-top: 48px;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .hero-author {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .hero-divider {
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.4;
+  }
+
+  .hero-tag {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--red);
+    border: 1px solid rgba(139,35,24,0.4);
+    padding: 4px 12px;
+    border-radius: 2px;
+  }
+
+  /* ─── CHAPTER LAYOUT ─── */
+  .chapter-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 60px;
+  }
+
+  .chapter-block {
+    padding: 120px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    position: relative;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .chapter-block.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .chapter-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(80px, 15vw, 200px);
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(184,150,90,0.07);
+    position: absolute;
+    right: -20px;
+    top: 60px;
+    line-height: 1;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .chapter-label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.7;
+    margin-bottom: 20px;
+  }
+
+  .chapter-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 5vw, 62px);
+    font-weight: 300;
+    line-height: 1.05;
+    color: var(--paper);
+    margin-bottom: 16px;
+    max-width: 700px;
+  }
+
+  .chapter-title em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .chapter-idea {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 2.2vw, 26px);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--muted);
+    margin-bottom: 60px;
+    letter-spacing: 0.3px;
+  }
+
+  /* ─── POETRY LINES ─── */
+  .poem-block {
+    margin: 48px 0;
+    max-width: 600px;
+  }
+
+  .poem-line {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(15px, 1.5vw, 18px);
+    font-weight: 300;
+    color: rgba(247,244,239,0.75);
+    line-height: 2.2;
+    display: block;
+    letter-spacing: 0.3px;
+  }
+
+  .poem-line.accent {
+    color: var(--paper);
+    font-weight: 400;
+  }
+
+  .poem-line.indent {
+    padding-left: 32px;
+    color: rgba(247,244,239,0.5);
+    font-size: 0.9em;
+  }
+
+  /* ─── INSIGHT BLOCK ─── */
+  .insight {
+    margin: 56px 0;
+    padding: 40px 48px;
+    background: rgba(184,150,90,0.05);
+    border: 1px solid rgba(184,150,90,0.15);
+    border-left: 3px solid var(--gold);
+    max-width: 680px;
+    position: relative;
+  }
+
+  .insight::before {
+    content: 'KEY INSIGHT';
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 9px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    opacity: 0.7;
+    display: block;
+    margin-bottom: 20px;
+  }
+
+  .insight p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 2vw, 23px);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--paper);
+    line-height: 1.5;
+  }
+
+  /* ─── PULL QUOTE ─── */
+  .pull-quote {
+    margin: 80px 0;
+    padding: 0 0 0 0;
+    position: relative;
+  }
+
+  .pull-quote-mark {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 120px;
+    font-weight: 300;
+    color: rgba(139,35,24,0.15);
+    line-height: 0.7;
+    display: block;
+    margin-bottom: 0;
+    margin-left: -8px;
+  }
+
+  .pull-quote p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(24px, 4vw, 48px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--paper);
+    line-height: 1.2;
+    max-width: 800px;
+    margin-top: -20px;
+  }
+
+  /* ─── FRAMEWORK STEPS ─── */
+  .framework {
+    margin: 64px 0;
+    max-width: 640px;
+  }
+
+  .framework-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 32px;
+    opacity: 0.8;
+  }
+
+  .step {
+    display: flex;
+    align-items: flex-start;
+    gap: 28px;
+    margin-bottom: 28px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .step:last-child { border-bottom: none; }
+
+  .step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--gold);
+    opacity: 0.5;
+    line-height: 1;
+    flex-shrink: 0;
+    width: 32px;
+  }
+
+  .step-content strong {
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--paper);
+    letter-spacing: 0.5px;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .step-content span {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ─── CALLOUT BAND ─── */
+  .callout-band {
+    background: var(--red);
+    padding: 80px 60px;
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .callout-band::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(0,0,0,0.3) 0%, transparent 70%);
+  }
+
+  .callout-band p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 5vw, 64px);
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(247,244,239,0.95);
+    line-height: 1.1;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+  }
+
+  /* ─── THREE TYPES VISUAL ─── */
+  .types-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin: 64px 0;
+    max-width: 760px;
+  }
+
+  .type-card {
+    padding: 36px 28px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: background 0.3s ease;
+  }
+
+  .type-card:hover { background: rgba(184,150,90,0.06); }
+
+  .type-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--gold-light);
+    margin-bottom: 12px;
+  }
+
+  .type-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.7;
+    letter-spacing: 0.3px;
+  }
+
+  .type-keyword {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  /* ─── CLOSING ─── */
+  .closing {
+    padding: 160px 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+  }
+
+  .closing-ornament {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    color: rgba(184,150,90,0.3);
+    display: block;
+    margin-bottom: 48px;
+  }
+
+  .closing-line {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 5vw, 58px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--paper);
+    line-height: 1.2;
+    max-width: 700px;
+    margin: 0 auto 60px;
+  }
+
+  .closing-line em { color: var(--gold-light); }
+
+  .signature {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    font-style: italic;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+
+  .signature strong {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-style: normal;
+    font-weight: 400;
+    display: block;
+    margin-top: 12px;
+  }
+
+  /* ─── DIVIDER ─── */
+  .divider {
+    width: 48px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 56px 0;
+  }
+
+  .dot-divider {
+    text-align: left;
+    color: rgba(184,150,90,0.3);
+    font-size: 20px;
+    letter-spacing: 8px;
+    margin: 48px 0;
+    display: block;
+  }
+
+  /* ─── SCROLL REVEAL ─── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── MOBILE ─── */
+  @media (max-width: 600px) {
+    .hero-content { padding: 0 24px; }
+    .chapter-wrap { padding: 0 24px; }
+    .chapter-block { padding: 72px 0; }
+    .chapter-num { font-size: 100px; right: 0; }
+    .insight { padding: 28px 24px; }
+    .callout-band { padding: 56px 24px; }
+    .types-grid { grid-template-columns: 1fr; }
+    .closing { padding: 100px 24px; }
+    .pull-quote p { font-size: clamp(22px, 6vw, 32px); }
+  }
+
+  @media (min-width: 600px) and (max-width: 900px) {
+    .hero-content { padding: 0 40px; }
+    .chapter-wrap { padding: 0 40px; }
+    .types-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-line-top"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Atif Recommends · Book Notes</p>
+    <h1 class="hero-title serif">
+      Never<br>
+      <em>Split</em><br>
+      the Difference
+    </h1>
+    <p class="hero-subtitle">Chris Voss &amp; Tahl Raz</p>
+    <blockquote class="hero-quote serif">
+      "Negotiation is not a battle of logic.<br>
+      It is a process of understanding another person's reality."
+    </blockquote>
+    <div class="hero-meta">
+      <span class="hero-author mono">Summary by Atif Khan</span>
+      <div class="hero-divider"></div>
+      <span class="hero-tag mono">10 Chapters</span>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CHAPTER 1 ─── -->
+<div class="chapter-wrap">
+
+  <article class="chapter-block">
+    <div class="chapter-num serif">01</div>
+    <p class="chapter-label mono">Chapter One</p>
+    <h2 class="chapter-title serif">The New<br><em>Rules</em></h2>
+    <p class="chapter-idea serif">Negotiation isn't war. It's listening.</p>
+
+    <div class="poem-block">
+      <span class="poem-line accent">You are not a calculator.</span>
+      <span class="poem-line">Neither is the person across from you.</span>
+      <span class="poem-line">&nbsp;</span>
+      <span class="poem-line accent">Logic-first fails.</span>
+      <span class="poem-line">Because humans aren't logical.</span>
+      <span class="poem-line">They are emotional, irrational,</span>
+      <span class="poem-line">driven by things they cannot name.</span>
+      <span class="poem-line">&nbsp;</span>
+      <span class="poem-line accent">Best negotiators don't argue.</span>
+      <span class="poem-line">They simply listen.</span>
+    </div>
+
+    <div class="insight reveal">
+      <p>Negotiation is not a battle of logic.<br>It is a process of understanding<br>another person's reality — and gently reshaping it.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="pull-quote reveal">
+      <span class="pull-quote-mark serif">"</span>
+      <p class="serif">Tactical Empathy is not agreeing with someone. It's understanding them well enough to move them.</p>
+    </div>
+  </article>
+
+  <!-- ─── CHAPTER 2 ─── -->
+  <article class="chapter-block">
+    <div class="chapter-num serif">02</div>
+    <p class="chapter-label mono">Chapter Two</p>
+    <h2 class="chapter-title serif">Be a<br><em>Mirror</em></h2>
+    <p class="chapter-idea serif">Repeat. Pause. Let silence do the work.</p>
+
+    <div class="poem-block">
+      <span class="poem-line accent">Assumptions blind you.</span>
+      <span class="poem-line">Hypotheses guide you.</span>
+      <span class="poem-line">&nbsp;</span>
+      <span class="poem-line">Go in ready to be wrong.</span>
+      <span class="poem-line">Ready to discover something</span>
+      <span class="poem-line">you never expected.</span>
+      <span class="poem-line">&nbsp;</span>
+      <span class="poem-line accent">The mirror technique:</span>
+      <span class="poem-line">Repeat their last three words.</span>
+      <span class="poem-line">Wait. Say nothing.</span>
+      <span class="poem-line indent">They will fill the silence.</span>
+      <span class="poem-line indent">They always do.</span>
+    </div>
+
+    <div class="insight reveal">
+      <p>Assumptions blind you.<br>Hypotheses guide you.<br>Enter every negotiation ready to discover you were wrong about something important.</p>
+    </div>
+
+    <span class="dot-divider">· · ·</span>
+
+    <div class="poem-block reveal">
+      <span class="poem-line accent">The Late-Night FM DJ Voice.</span>
+      <span class="poem-line">Slow. Warm. Descending.</span>
+      <span class="poem-line">Not cheerful. Not cold.</span>
+      <span class="poem-line">Just: calm.</span>
+    </div>
+  </article>
+
+  <!-- ─── CHAPTER 3 ─── -->
+  <article class="chapter-block">
+    <div class="chapter-num serif">03</div>
+    <p class="chapter-label mono">Chapter Three</p>
+    <h2 class="chapter-title serif">Don't Feel<br><em>Their Pain.</em><br>Label It.</h2>
+    <p class="chapter-idea serif">Name the emotion. Watch it shrink.</p>
+
+    <div class="poem-block">
+      <span class="poem-line">Six hours.</span>
+      <span class="poem-line">A closed door.</span>
+      <span class="poem-line">Three armed men on the other side.</span>
+      <span class="poem-line">&nbsp;</span>
+      <span class="poem-line">Voss didn't demand.</span>
+      <span class="poem-line">He didn't threaten.</span>
+      <span class="poem-line accent">He just named what they felt.</span>
+      <span class="poem-line">&nbsp;</span>
+      <span class="poem-line indent">The curtain moved.</span>
+      <span class="poem-line indent">The door opened.</span>
+    </div>
+
+    <div class="insight reveal">
+      <p>Emotions are not the obstacle to negotiation.<br>They are the terrain.<br>Don't go around them. Move through them — by naming them.</p>
+    </div>
+
+    <div class="framework reveal">
+      <p class="framework-title mono">How to Label</p>
+      <div class="step">
+        <span class="step-num serif">1</span>
+        <div class="step-content">
+          <strong>Start with "It seems like..."</strong>
+          <span>Never "I think" or "I feel" — keep it about them, not you.</span>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num serif">2</span>
+        <div class="step-content">
+          <strong>Name the emotion precisely</strong>
+          <span>eg: "It seems like you're not feeling well."</span>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num serif">3</span>
+        <div class="step-content">
+          <strong>Wait. Say nothing else.</strong>
+          <span>The label does the work. You don't need to explain it.</span>
+        </div>
+      </div>
+    </div>
+  </article>
+
+</div>
+
+<!-- ─── CALLOUT BAND 1 ─── -->
+<div class="callout-band">
+  <p class="serif">"It seems like you're not feeling well."<br>Just name the emotion.</p>
+</div>
+
+<div class="chapter-wrap">
+
+  <!-- ─── CHAPTER 4 ─── -->
+  <article class="chapter-block">
+    <div class="chapter-num serif">04</div>
+    <p class="chapter-label mono">Chapter Four</p>
+    <h2 class="chapter-title serif">Beware <em>"Yes."</em><br>Master <em>"No."</em></h2>
+    <p class="chapter-idea serif">No is not the end. It's the beginning.</p>
+
+    <div class="poem-block">
+      <span class="poem-line">"Yes" can mean three things.</span>
+      <span class="poem-line indent">Commitment. Confirmation. Counterfeit.</span>
+      <span class="poem-line">Two out of three are useless.</span>
+      <span class="poem-line">&nbsp;</span>
+      <span class="poem-line accent">"No" always means something.</span>
+      <span class="poem-line">It marks a boundary.</span>
+      <span class="poem-line">It starts an honest conversation.</span>
+      <span class="poem-line">&nbsp;</span>
+      <span class="poem-line">Nobody compromises that often.</span>
+      <span class="poem-line">Nobody wants to feel that</span>
+      <span class="poem-line accent">softly pressured.</span>
+    </div>
+
+    <div class="insight reveal">
+      <p>"No" is not rejection.<br>It's information.<br>The person who just said no now feels safe enough to engage honestly.</p>
+    </div>
+
+    <div class="pull-quote reveal">
+      <span class="pull-quote-mark serif">"</span>
+      <p class="serif">Never split the difference. Never compromise. Compromise often produces outcomes that satisfy nobody.</p>
+    </div>
+  </article>
+
+  <!-- ─── CHAPTER 5 ─── -->
+  <article class="chapter-block">
+    <div class="chapter-num serif">05</div>
+    <p class="chapter-label mono">Chapter Five</p>
+    <h2 class="chapter-title serif">Trigger the<br><em>Two Words</em></h2>
+    <p class="chapter-idea serif">That's right — not you're right.</p>
+
+    <div class="poem-block">
+      <span class="poem-line accent">"That's right."</span>
+      <span class="poem-line">Two words.</span>
+      <span class="poem-line">The breakthrough in any negotiation.</span>
+      <span class="poem-line">&nbsp;</span>
+      <span class="poem-line">It means: you've been seen.</span>
+      <span class="poem-line">Not just heard. Seen.</span>
+      <span class="poem-line">&nbsp;</span>
+      <span class="poem-line accent">"You're right" means: stop talking.</span>
+      <span class="poem-line accent">"That's right" means: you understand me.</span>
+      <span class="poem-line">&nbsp;</span>
+      <span class="poem-line">The difference is everything.</span>
+    </div>
+
+    <div class="insight reveal">
+      <p>Trigger the two words that immediately transform any negotiation:<br>"That's right."<br>It opens the door to real influence.</p>
+    </div>
+
+    <div class="framework reveal">
+      <p class="framework-title mono">Behavioral Change Stairway</p>
+      <div class="step">
+        <span class="step-num serif">1</span>
+        <div class="step-content"><strong>Active Listening</strong><span>Truly hear. Not to respond — to understand.</span></div>
+      </div>
+      <div class="step">
+        <span class="step-num serif">2</span>
+        <div class="step-content"><strong>Empathy</strong><span>Understand their perspective. Label it.</span></div>
+      </div>
+      <div class="step">
+        <span class="step-num serif">3</span>
+        <div class="step-content"><strong>Rapport</strong><span>Trust builds through being seen.</span></div>
+      </div>
+      <div class="step">
+        <span class="step-num serif">4</span>
+        <div class="step-content"><strong>Influence</strong><span>Now you can shape the direction.</span></div>
+      </div>
+      <div class="step">
+        <span class="step-num serif">5</span>
+        <div class="step-content"><strong>Behavioral Change</strong><span>The outcome. You cannot skip steps.</span></div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ─── CHAPTER 6 ─── -->
+  <article class="chapter-block">
+    <div class="chapter-num serif">06</div>
+    <p class="chapter-label mono">Chapter Six</p>
+    <h2 class="chapter-title serif">Bend<br><em>Their Reality</em></h2>
+    <p class="chapter-idea serif">Make them feel what they'll lose.</p>
+
+    <div class="poem-block">
+      <span class="poem-line">$150,000 or your aunt dies.</span>
+      <span class="poem-line">The obvious move: split it.</span>
+      <span class="poem-line accent">Voss says: no.</span>
+      <span class="poem-line">&nbsp;</span>
+      <span class="poem-line">Compromise is a principle.</span>
+      <span class="poem-line">And principles are dangerous.</span>
+      <span class="poem-line">&nbsp;</span>
+      <span class="poem-line">Don't tell them what they'll gain.</span>
+      <span class="poem-line accent">Make them feel what they'll lose.</span>
+    </div>
+
+    <div class="insight reveal">
+      <p>A good deal is not the midpoint.<br>It is the outcome that addresses<br>what each side actually needs.</p>
+    </div>
+
+    <div class="framework reveal">
+      <p class="framework-title mono">Ackerman Model</p>
+      <div class="step">
+        <span class="step-num serif">1</span>
+        <div class="step-content"><strong>Start at 65% of target</strong><span>Anchor low. Reshape expectations.</span></div>
+      </div>
+      <div class="step">
+        <span class="step-num serif">2</span>
+        <div class="step-content"><strong>Move to 85%</strong><span>Smaller increment. Feels like real resistance.</span></div>
+      </div>
+      <div class="step">
+        <span class="step-num serif">3</span>
+        <div class="step-content"><strong>Then 95%</strong><span>Shrinking moves signal you're near your limit.</span></div>
+      </div>
+      <div class="step">
+        <span class="step-num serif">4</span>
+        <div class="step-content"><strong>Final: odd number</strong><span>$31,850 feels researched. $32,000 feels guessed.</span></div>
+      </div>
+    </div>
+  </article>
+
+</div>
+
+<!-- ─── CALLOUT BAND 2 ─── -->
+<div class="callout-band">
+  <p class="serif">"Never split the difference.<br>The midpoint satisfies no one."</p>
+</div>
+
+<div class="chapter-wrap">
+
+  <!-- ─── CHAPTER 7 ─── -->
+  <article class="chapter-block">
+    <div class="chapter-num serif">07</div>
+    <p class="chapter-label mono">Chapter Seven</p>
+    <h2 class="chapter-title serif">Create the<br><em>Illusion of Control</em></h2>
+    <p class="chapter-idea serif">Don't force agreement. Ask questions.</p>
+
+    <div class="poem-block">
+      <span class="poem-line">The person who gives the other side</span>
+      <span class="poem-line accent">the illusion of control</span>
+      <span class="poem-line">actually holds all of it.</span>
+      <span class="poem-line">&nbsp;</span>
+      <span class="poem-line">Ask "How" and "What."</span>
+      <span class="poem-line">Never "Why" — it sounds accusatory.</span>
+      <span class="poem-line">&nbsp;</span>
+      <span class="poem-line indent">"How am I supposed to do that?"</span>
+      <span class="poem-line indent">"What about this matters most to you?"</span>
+      <span class="poem-line">&nbsp;</span>
+      <span class="poem-line">Let them solve the problem.</span>
+      <span class="poem-line">When people arrive at a conclusion themselves,</span>
+      <span class="poem-line accent">they believe it far more deeply.</span>
+    </div>
+
+    <div class="insight reveal">
+      <p>Domination produces resistance.<br>Collaboration — even simulated collaboration —<br>produces results.</p>
+    </div>
+  </article>
+
+  <!-- ─── CHAPTER 8 ─── -->
+  <article class="chapter-block">
+    <div class="chapter-num serif">08</div>
+    <p class="chapter-label mono">Chapter Eight</p>
+    <h2 class="chapter-title serif"><em>Guarantee</em><br>Execution</h2>
+    <p class="chapter-idea serif">A yes that doesn't get done is not a yes.</p>
+
+    <div class="poem-block">
+      <span class="poem-line">Getting to yes is not enough.</span>
+      <span class="poem-line accent">Getting to a yes that holds — that's the job.</span>
+      <span class="poem-line">&nbsp;</span>
+      <span class="poem-line">Find the other decision-makers.</span>
+      <span class="poem-line">Bring them along.</span>
+      <span class="poem-line">A deal is only as good as its execution.</span>
+      <span class="poem-line">&nbsp;</span>
+      <span class="poem-line">7% — words.</span>
+      <span class="poem-line">38% — tone.</span>
+      <span class="poem-line accent">55% — body language.</span>
+      <span class="poem-line indent">When these don't align: it's not agreement.</span>
+      <span class="poem-line indent">It's someone waiting for you to leave.</span>
+    </div>
+
+    <div class="insight reveal">
+      <p>There are two decision-makers in every room.<br>Watch the pronouns.<br>
+      "We" and "they" = others hold the power.<br>"I" = you're talking to the right person.</p>
+    </div>
+
+    <div class="framework reveal">
+      <p class="framework-title mono">Rule of Three</p>
+      <div class="step">
+        <span class="step-num serif">1</span>
+        <div class="step-content"><strong>They say yes.</strong><span>First commitment. Not enough on its own.</span></div>
+      </div>
+      <div class="step">
+        <span class="step-num serif">2</span>
+        <div class="step-content"><strong>You summarise. They confirm: "That's right."</strong><span>Emotional buy-in. Now it's real.</span></div>
+      </div>
+      <div class="step">
+        <span class="step-num serif">3</span>
+        <div class="step-content"><strong>Ask: "How will we know this is working?"</strong><span>They describe the outcome in their own words. Impossible to fake three times.</span></div>
+      </div>
+    </div>
+
+    <div class="poem-block reveal">
+      <span class="poem-line">Also — find the other decision-makers.</span>
+      <span class="poem-line">Guarantee execution means:</span>
+      <span class="poem-line accent">kind other decision-makers being brought along.</span>
+    </div>
+  </article>
+
+  <!-- ─── CHAPTER 9 ─── -->
+  <article class="chapter-block">
+    <div class="chapter-num serif">09</div>
+    <p class="chapter-label mono">Chapter Nine</p>
+    <h2 class="chapter-title serif"><em>Bargain</em><br>Hard</h2>
+    <p class="chapter-idea serif">Hard doesn't mean cold. It means clear.</p>
+
+    <div class="poem-block">
+      <span class="poem-line">Bargain hard.</span>
+      <span class="poem-line">Don't be aggressive.</span>
+      <span class="poem-line accent">Be apologetically firm.</span>
+      <span class="poem-line">&nbsp;</span>
+      <span class="poem-line indent">"This is so embarrassing.</span>
+      <span class="poem-line indent">I simply can't."</span>
+      <span class="poem-line">&nbsp;</span>
+      <span class="poem-line">That's the tone.</span>
+      <span class="poem-line">Clarity wrapped in warmth.</span>
+    </div>
+
+    <p class="framework-title mono reveal" style="margin-top:48px; margin-bottom:32px;">Three Types of Negotiators</p>
+    <div class="types-grid reveal">
+      <div class="type-card">
+        <span class="type-keyword mono">Accommodator</span>
+        <p class="type-name serif">Relationship First</p>
+        <p class="type-desc">Hates conflict. Values harmony above the deal. Needs to know that saying no won't end the relationship.</p>
+      </div>
+      <div class="type-card">
+        <span class="type-keyword mono">Assertive</span>
+        <p class="type-name serif">Time is Money</p>
+        <p class="type-desc">Loves directness. Needs to feel heard before they can listen. Mistake them for hostile — and you've lost them.</p>
+      </div>
+      <div class="type-card">
+        <span class="type-keyword mono">Analyst</span>
+        <p class="type-name serif">Methodical, No Surprises</p>
+        <p class="type-desc">Needs time, data, space. Hates being rushed. Logic first, then emotion — never the reverse.</p>
+      </div>
+    </div>
+
+    <div class="insight reveal" style="margin-top:60px;">
+      <p>Know your own type.<br>Then learn to identify theirs.<br>Misidentifying the type across the table is the most common reason negotiations stall.</p>
+    </div>
+  </article>
+
+  <!-- ─── CHAPTER 10 ─── -->
+  <article class="chapter-block">
+    <div class="chapter-num serif">10</div>
+    <p class="chapter-label mono">Chapter Ten</p>
+    <h2 class="chapter-title serif">Find the<br><em>Black Swan</em></h2>
+    <p class="chapter-idea serif">There are some hidden major objections of any negotiation.</p>
+
+    <div class="poem-block">
+      <span class="poem-line">Every negotiation has unknown unknowns.</span>
+      <span class="poem-line">Pieces of information hidden deep</span>
+      <span class="poem-line">in the other party's fears.</span>
+      <span class="poem-line">&nbsp;</span>
+      <span class="poem-line">They are not revealed by direct questioning.</span>
+      <span class="poem-line accent">They emerge from listening.</span>
+      <span class="poem-line">Patiently. Over time.</span>
+      <span class="poem-line">&nbsp;</span>
+      <span class="poem-line">The Black Swan is always there.</span>
+      <span class="poem-line">The question is:</span>
+      <span class="poem-line accent">are you still paying attention when it surfaces?</span>
+    </div>
+
+    <div class="insight reveal">
+      <p>Black Swans are the hidden leverage<br>that transforms a stalled negotiation<br>into a resolution. Find them.</p>
+    </div>
+
+    <div class="pull-quote reveal">
+      <span class="pull-quote-mark serif">"</span>
+      <p class="serif">Every extra minute of listening is another chance to find the thing that changes everything.</p>
+    </div>
+  </article>
+
+</div>
+
+<!-- ─── FINAL CALLOUT ─── -->
+<div class="callout-band">
+  <p class="serif">"When the pressure is on,<br>you don't rise to the occasion.<br>You fall to your highest level of preparation."</p>
+</div>
+
+<!-- ─── CLOSING ─── -->
+<div class="closing">
+  <span class="closing-ornament serif">✦</span>
+  <p class="closing-line serif">
+    You can never know enough<br>
+    about the person<br>
+    <em>across from you.</em>
+  </p>
+  <div class="divider" style="margin:0 auto 48px;"></div>
+  <p class="signature">
+    Notes from a copy well-read
+    <strong>Atif Recommends · @atifrecommends</strong>
+  </p>
+</div>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal, .chapter-block');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+  reveals.forEach(el => observer.observe(el));
+
+  // Stagger chapter blocks
+  document.querySelectorAll('.chapter-block').forEach((el, i) => {
+    el.style.transitionDelay = '0.1s';
+  });
+</script>
+
+</body>
+</html>
