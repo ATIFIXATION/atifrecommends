@@ -84,10 +84,47 @@ body {
   font-weight: 400;
   font-size: var(--font-size-body);
   line-height: var(--lh-body);
-  background-color: var(--page-bg);
+  background-color: var(--page-bg); /* Dark fallback color while image loads */
   color: var(--ink-primary);
   min-height: 100vh;
   overflow-x: hidden;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  transition: background-image 0.5s ease-in-out;
+}
+
+/* Background image attachment fixed only on screens 900px and wider */
+@media (min-width: 900px) {
+  body {
+    background-attachment: fixed;
+  }
+}
+
+/* Background Classes per Page / Section */
+body.bg-home,
+body.page-home {
+  background-image: url('../bg/sky-sun.webp');
+}
+
+body.bg-bookshelf,
+body.page-bookshelf {
+  background-image: url('../bg/checker.webp');
+}
+
+body.bg-archive,
+body.page-archive {
+  background-image: url('../bg/swirl.webp');
+}
+
+body.bg-about,
+body.page-about {
+  background-image: url('../bg/halftone.webp');
+}
+
+body.bg-portfolio,
+body.page-portfolio {
+  background-image: url('../bg/sky-cat.webp');
 }
 
 /* Paper grain overlay */
@@ -139,7 +176,9 @@ a {
   width: 94%;
   max-width: 1340px;
   margin: 3.5rem auto 5rem;
-  background-color: var(--canvas-bg);
+  background-color: rgba(250, 248, 245, 0.94); /* Warm cream at 94% opacity */
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
   box-shadow: 0 25px 70px rgba(0, 0, 0, 0.45);
   border-radius: 2px;
   overflow: hidden;

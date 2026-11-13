@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCategoryFilters();
   initMobileNav();
   centerShelfOnFeatured();
+  initBackgroundSwitcher();
 });
 
 /**
@@ -306,4 +307,81 @@ function initMobileNav() {
       });
     });
   }
+}
+
+/**
+ * Dynamic Section & Page Background Switcher
+ * Mappings:
+ * - Home: sky-sun.webp (bg-home)
+ * - The Bookshelf: checker.webp (bg-bookshelf)
+ * - Reading Archive: swirl.webp (bg-archive)
+ * - About: halftone.webp (bg-about)
+ * - Portfolio: sky-cat.webp (bg-portfolio)
+ */
+function initBackgroundSwitcher() {
+  const sections = [
+    { id: 'home', bg: 'bg-home' },
+    { id: 'bookshelf', bg: 'bg-bookshelf' },
+    { id: 'archive', bg: 'bg-archive' },
+    { id: 'portfolio', bg: 'bg-portfolio' },
+    { id: 'about', bg: 'bg-about' }
+  ];
+
+  const setBg = (bgClass) => {
+    sections.forEach(s => {
+      document.body.classList.remove(s.bg, `page-${s.id}`);
+    });
+    document.body.classList.add(bgClass, `page-${bgClass.replace('bg-', '')}`);
+  };
+
+  // If a hash exists on initial load
+  const hash = (window.location.hash || '').replace('#', '');
+  const initial = sections.find(s => s.id === hash);
+  if (initial) {
+    setBg(initial.bg);
+  } else {
+    setBg('bg-home');
+  }
+
+  // IntersectionObserver for seamless background transitions while scrolling
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      let bestEntry = null;
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          if (!bestEntry || entry.intersectionRatio > bestEntry.intersectionRatio) {
+            bestEntry = entry;
+          }
+        }
+      });
+
+      if (bestEntry && window.scrollY >= 150) {
+        const target = sections.find(s => s.id === bestEntry.target.id);
+        if (target) setBg(target.bg);
+      }
+    }, {
+      root: null,
+      rootMargin: '-10% 0px -40% 0px',
+      threshold: [0.1, 0.25, 0.5]
+    });
+
+    sections.forEach(s => {
+      const el = document.getElementById(s.id);
+      if (el) observer.observe(el);
+    });
+  }
+
+  // When scrolled to top (home hero)
+  window.addEventListener('scroll', () => {
+    if (window.scrollY < 150) {
+      setBg('bg-home');
+    }
+  }, { passive: true });
+
+  // Hash navigation listener
+  window.addEventListener('hashchange', () => {
+    const currentHash = (window.location.hash || '').replace('#', '');
+    const current = sections.find(s => s.id === currentHash);
+    if (current) setBg(current.bg);
+  });
 }
