@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Atif Recommends — The Digital Literary Library & Archive</title>
-  <meta name="description" content="A personal literary library, interactive 3D bookshelf, and digital archive curated by Atif Khan. Exploring literature, psychology, philosophy, and cinema.">
+  <title>Atif Recommends — The Personal Curation</title>
+  <meta name="description" content="A personal literary archive and digital library curated by Atif Khan. Exploring literature, psychology, philosophy, and cinema.">
 
   <!-- Core CSS -->
   <link rel="stylesheet" href="assets/css/library-core.css">
@@ -13,287 +13,285 @@
 </head>
 <body>
 
-  <!-- MINIMAL EDITORIAL NAVIGATION (SECTION 05-A) -->
-  <nav class="site-nav">
-    <div class="nav-brand-group">
-      <a href="index.html" class="nav-logo-mark">A.K.</a>
-      <a href="index.html" class="nav-brand-title">Atif Recommends</a>
-      <span class="nav-curator-tag">· Literary Archive</span>
-    </div>
+  <!-- Ambient Wall Floating Reference Numbers (Reference: JZA) -->
+  <div class="ambient-numbers-layer" aria-hidden="true">
+    <span class="ambient-num num-pos-1">1</span>
+    <span class="ambient-num num-pos-2">2</span>
+    <span class="ambient-num num-pos-3">3</span>
+    <span class="ambient-num num-pos-4">4</span>
+    <span class="ambient-num num-pos-5">5</span>
+    <span class="ambient-num num-pos-vi">VI</span>
+    <span class="ambient-num num-pos-ix">IX</span>
+  </div>
 
-    <ul class="nav-links">
-      <li><a href="#home" class="nav-link active">Home</a></li>
-      <li><a href="#bookshelf" class="nav-link">The Bookshelf</a></li>
-      <li><a href="#archive" class="nav-link">Reading Archive</a></li>
-      <li><a href="#about" class="nav-link">About</a></li>
-      <li>
-        <a href="https://atif-portfolio.vercel.app" target="_blank" rel="noopener noreferrer" class="nav-link nav-link-portfolio dynamic-portfolio-link">
-          <span>Portfolio</span>
-          <i class="bi bi-arrow-up-right"></i>
-        </a>
-      </li>
-    </ul>
+  <!-- Main Floating Editorial Canvas Surface -->
+  <div class="editorial-canvas">
 
-    <button class="nav-toggle" aria-label="Toggle navigation menu">
-      <i class="bi bi-list"></i>
-    </button>
-  </nav>
+    <!-- Minimal Editorial Navigation (Reference JZA) -->
+    <nav class="canvas-nav" id="topNav">
+      <a href="index.html" class="canvas-brand">Atif Recommends</a>
 
-  <!-- MAIN HERO & 3D BOOKSHELF EXPERIENCE (SECTION 05-B & 05-C) -->
-  <main id="home">
-    <section class="library-hero-section" id="bookshelf">
-
-      <!-- Reference 01 Warm Paper Editorial Floating Stage -->
-      <div class="bookshelf-editorial-stage">
-        
-        <!-- Subtle Reference Numerals Floating in Background (Reference 01) -->
-        <span class="stage-numeral numeral-1">1</span>
-        <span class="stage-numeral numeral-2">2</span>
-        <span class="stage-numeral numeral-3">3</span>
-        <span class="stage-numeral numeral-4">4</span>
-        <span class="stage-numeral numeral-5">5</span>
-        <span class="stage-numeral numeral-vi">VI</span>
-        <span class="stage-numeral numeral-ix">IX</span>
-
-        <!-- Editorial Headline & Introduction -->
-        <header class="stage-header">
-          <p class="stage-eyebrow">Part I · The Curated Collection</p>
-          <h1 class="stage-headline">The Personal<br><span>Curation</span></h1>
-          <p class="stage-subline">A private library of literature, philosophy, psychology, and cinematic craft — preserved as physical digital objects.</p>
-        </header>
-
-        <!-- Shelf View Mode Switcher -->
-        <div class="shelf-controls-bar">
-          <div class="view-mode-toggles">
-            <button id="viewToggleShelf" class="view-toggle-btn active" title="Switch to Physical Shelf View">
-              <i class="bi bi-bookshelf"></i>
-              <span>3D Shelf</span>
-            </button>
-            <button id="viewToggleArchive" class="view-toggle-btn" title="Switch to 3D Perspective Archive Carousel">
-              <i class="bi bi-stack"></i>
-              <span>Spatial Archive</span>
-            </button>
-          </div>
-          <span class="shelf-legend-hint">Hover to pull volume · Click to inspect</span>
-        </div>
-
-        <!-- VIEW 1: THE 3D BOOKSHELF (REFERENCE 01) -->
-        <div id="bookshelfViewSection" class="bookshelf-3d-wrapper">
-          <div class="bookshelf-pan-container">
-            <!-- Books Row dynamically populated -->
-            <div id="shelfBooksRow" class="shelf-books-row">
-              <!-- Books will be injected by bookshelf.js -->
-            </div>
-          </div>
-
-          <!-- Architectural Wooden Shelf Plank with Brass Lip -->
-          <div class="bookshelf-plank-structure">
-            <div class="shelf-plank-top"></div>
-            <div class="shelf-brass-lip"></div>
-            <div class="shelf-front-bevel">
-              <span class="shelf-plank-label">Atif Recommends · Shelf 01</span>
-              <span class="shelf-plank-label">Fine Hardcover Edition · 2026</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- VIEW 2: THE 3D PERSPECTIVE ARCHIVE CAROUSEL (REFERENCE 02) -->
-        <div id="archiveCarouselSection" class="archive-carousel-view">
-          <div class="carousel-top-meta">
-            <span class="carousel-year-badge">
-              <i class="bi bi-paperclip"></i>
-              <span id="carouselActiveBadge">Active Volume</span>
-            </span>
-            <span>9 Curated Works · Interactive Spatial Spread</span>
-          </div>
-
-          <!-- 3D Perspective Carousel Track -->
-          <div id="carousel3dTrack" class="carousel-3d-track">
-            <!-- Injected by bookshelf.js -->
-          </div>
-
-          <!-- Bottom Action Pill Controls (Reference 02) -->
-          <div class="carousel-action-pill">
-            <button id="carouselPrevBtn" class="pill-circular-btn" title="Previous Work" aria-label="Previous Work">
-              <i class="bi bi-chevron-left"></i>
-            </button>
-            <button id="carouselInfoBtn" class="pill-circular-btn" title="Inspect Volume" aria-label="Inspect Volume">
-              <i class="bi bi-three-dots"></i>
-            </button>
-            <button id="carouselNextBtn" class="pill-circular-btn" title="Next Work" aria-label="Next Work">
-              <i class="bi bi-chevron-right"></i>
-            </button>
-          </div>
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- SECTION 06: THE LIBRARY — EDITORIAL BOOK COLLECTION -->
-    <section class="editorial-archive-section" id="archive">
-      <div class="editorial-container">
-        
-        <!-- Header -->
-        <div class="editorial-section-header">
-          <div class="editorial-header-left">
-            <span class="section-part-tag">Part II · Editorial Catalog</span>
-            <h2 class="section-main-title">Reading <em>Archive</em></h2>
-            <p class="section-intro-text">
-              An independent digital publication documenting key literary works, psychological studies, and cinematic treatises. Each book possesses its own bespoke atmosphere and world.
-            </p>
-          </div>
-
-          <!-- Filter Pills -->
-          <div class="archive-filter-bar">
-            <button class="filter-pill active" data-filter="all">All Volumes</button>
-            <button class="filter-pill" data-filter="Classics">Classics</button>
-            <button class="filter-pill" data-filter="Philosophy">Philosophy</button>
-            <button class="filter-pill" data-filter="Psychology">Psychology</button>
-            <button class="filter-pill" data-filter="Cinema & Craft">Cinema & Craft</button>
-            <button class="filter-pill" data-filter="Contemporary">Contemporary</button>
-          </div>
-        </div>
-
-        <!-- Asymmetrical Editorial Books Grid -->
-        <div id="editorialBooksGrid" class="editorial-books-grid">
-          <!-- Populated dynamically by bookshelf.js using exact existing content -->
-        </div>
-
-      </div>
-    </section>
-
-    <!-- SECTION 09: PERSONAL PORTFOLIO INTEGRATION (VERCEL WEBSITE) -->
-    <section class="portfolio-feature-section" id="portfolio">
-      <div class="portfolio-feature-card">
-        
-        <!-- Text Column -->
-        <div class="portfolio-text-pane">
-          <div>
-            <span class="portfolio-eyebrow">Creative Portfolio · Vercel Deployment</span>
-            <h2 class="portfolio-name">Atif <em>Khan</em></h2>
-            <p class="portfolio-statement">
-              "Exploring the intersections of cinematic structure, human psychology, and the art of storytelling."
-            </p>
-            <p class="portfolio-description">
-              Beyond the literary library, discover my creative portfolio featuring cinematic experiments, directorial notes, writing projects, and design systems.
-            </p>
-          </div>
-
-          <a href="https://atif-portfolio.vercel.app" target="_blank" rel="noopener noreferrer" class="portfolio-launch-btn dynamic-portfolio-link">
-            <span>Explore Portfolio</span>
-            <i class="bi bi-box-arrow-up-right"></i>
+      <ul class="nav-links-quiet">
+        <li><a href="#bookshelf" class="active">The Bookshelf</a></li>
+        <li><a href="#archive">Reading Archive</a></li>
+        <li><a href="#about">About</a></li>
+        <li>
+          <a href="https://atif-web-mu.vercel.app/" target="_blank" rel="noopener noreferrer" class="portfolio-nav-link">
+            Portfolio <i class="bi bi-arrow-up-right" style="font-size: 0.7rem;"></i>
           </a>
-        </div>
+        </li>
+      </ul>
 
-        <!-- Visual Architectural Preview Column -->
-        <div class="portfolio-visual-pane">
-          <div class="portfolio-mockup-frame">
-            <div class="mockup-header-bar">
-              <span class="mockup-dot"></span>
-              <span class="mockup-dot"></span>
-              <span class="mockup-dot"></span>
+      <button class="canvas-nav-toggle" aria-label="Toggle navigation menu">
+        <i class="bi bi-list"></i>
+      </button>
+    </nav>
+
+    <!-- Headline Header (Reference JZA: "The Personal Curation") -->
+    <header class="canvas-hero-header" id="bookshelf">
+      <p class="canvas-eyebrow">Part 1</p>
+      <h1 class="canvas-headline">The Personal<br><span>Curation</span></h1>
+      <p class="canvas-subline">Exploring the intersections of cinematic structure, human psychology, and the art of storytelling.</p>
+    </header>
+
+    <!-- THE BOOKSHELF STAGE (REFERENCE JZA: ECLECTIC BOOKS + CENTRAL FEATURED COVER) -->
+    <section class="bookshelf-stage-wrapper">
+      <div class="shelf-scroll-track" tabindex="0" aria-label="Interactive digital bookshelf">
+        <div class="shelf-books-ensemble" id="shelfBooksRow">
+          
+          <!-- LEFT BOOK 1: The Canterville Ghost (Dusty Rose, Leaning) -->
+          <div class="spine-book spine-canterville" data-book-index="5" tabindex="0" role="button" aria-label="The Canterville Ghost by Oscar Wilde">
+            <div class="spine-content">
+              <span class="spine-author text-horizontal">WILDE</span>
+              <span class="spine-title text-vertical-rl">The Canterville Ghost</span>
+              <span style="font-size: 0.6rem; opacity: 0.7;">1887</span>
             </div>
-            <div class="mockup-body">
-              <div class="mockup-logo">ATIF KHAN</div>
-              <p class="mockup-sub">Filmmaker &amp; Thinker</p>
-              <div class="mockup-preview-pills">
-                <div class="mockup-pill">Cinematic Architecture</div>
-                <div class="mockup-pill">Narrative Systems</div>
-                <div class="mockup-pill">Selected Directorial Works</div>
+          </div>
+
+          <!-- LEFT BOOK 2: Art of Storytelling (Muted Forest Green) -->
+          <div class="spine-book spine-storytelling" data-book-index="0" tabindex="0" role="button" aria-label="The Art of Storytelling by Atif Khan">
+            <div class="spine-content">
+              <span class="spine-author text-horizontal">ATIF KHAN</span>
+              <span class="spine-title text-vertical-rl">Art of Storytelling</span>
+              <span style="font-size: 0.55rem; opacity: 0.7;">&sect;</span>
+            </div>
+          </div>
+
+          <!-- LEFT BOOK 3: Never Split the Difference (Bold Orange, Large Sans Block) -->
+          <div class="spine-book spine-neversplit" data-book-index="4" tabindex="0" role="button" aria-label="Never Split the Difference by Chris Voss">
+            <div class="spine-content">
+              <span class="spine-author text-horizontal">CHRIS VOSS</span>
+              <span class="spine-title text-vertical-rl">NEVER SPLIT</span>
+              <span style="font-size: 0.55rem; letter-spacing: 0.05em; text-transform: uppercase;">FBI</span>
+            </div>
+          </div>
+
+          <!-- LEFT BOOK 4: Animal Farm (Industrial Slate with Red Header Block) -->
+          <div class="spine-book spine-animalfarm" data-book-index="3" tabindex="0" role="button" aria-label="Animal Farm by George Orwell">
+            <div class="spine-top-accent">ORWELL</div>
+            <div class="spine-content" style="padding-top: 6px;">
+              <span class="spine-title text-vertical-rl">ANIMAL FARM</span>
+              <span style="font-size: 0.5rem; opacity: 0.6;">1945</span>
+            </div>
+          </div>
+
+          <!-- LEFT BOOK 5: Ohh Yes I Am Single (Paper White, Red Accent) -->
+          <div class="spine-book spine-single" data-book-index="7" tabindex="0" role="button" aria-label="Ohh Yes I Am Single by Durjoy Datta">
+            <div class="spine-content">
+              <span class="spine-tag text-horizontal">DATTA</span>
+              <span class="spine-title text-vertical-rl">ohh yes i am single</span>
+              <span class="spine-author text-horizontal">&bull;&bull;&bull;</span>
+            </div>
+          </div>
+
+          <!-- CENTRAL FEATURED BOOK: SHOWN FACE-ON / FRONT COVER (REFERENCE JZA) -->
+          <div class="featured-book-stage" id="featuredBookCover" tabindex="0" role="button">
+            <div class="featured-cover-surface">
+              <div class="featured-inner-frame" id="featuredInnerFrame">
+                <!-- Artwork injected by bookshelf.js -->
+              </div>
+              <div>
+                <h2 class="featured-cover-title" id="featuredCoverTitle">The Art of Storytelling</h2>
+                <p class="featured-cover-author" id="featuredCoverAuthor">Atif Khan</p>
               </div>
             </div>
           </div>
+
+          <!-- RIGHT BOOK 6: Crime and Punishment (Slender Crimson, Slanted) -->
+          <div class="spine-book spine-crime" data-book-index="1" tabindex="0" role="button" aria-label="Crime and Punishment by Fyodor Dostoevsky">
+            <div class="spine-content" style="padding: 10px 2px;">
+              <span class="spine-title text-vertical-rl">CRIME &amp; PUNISHMENT</span>
+              <span style="font-size: 0.5rem; opacity: 0.8;">1866</span>
+            </div>
+          </div>
+
+          <!-- RIGHT BOOK 7: Screenplay Notes (Cobalt Blue) -->
+          <div class="spine-book spine-screenplay" data-book-index="8" tabindex="0" role="button" aria-label="Screenplay Notes by Atif Khan">
+            <div class="spine-content">
+              <span class="spine-author text-horizontal">ATIF KHAN</span>
+              <span class="spine-title text-vertical-rl">Screenplay Notes</span>
+              <span style="font-size: 0.55rem; opacity: 0.7;">ACT I&ndash;III</span>
+            </div>
+          </div>
+
+          <!-- RIGHT BOOK 8: Cinematic Architecture (Massive Pale Volume, like S,M,L,XL) -->
+          <div class="spine-book spine-cinematic" data-book-index="8" tabindex="0" role="button" aria-label="Cinematic Notes by Atif Khan">
+            <div class="spine-content">
+              <div class="spine-top-meta">
+                <span>ATIF KHAN</span><br>
+                <span>CINEMA</span>
+              </div>
+              <span class="spine-title text-vertical-rl">CINEMA</span>
+              <span style="font-size: 0.6rem; font-weight: 700;">NOTES</span>
+            </div>
+          </div>
+
+          <!-- RIGHT BOOK 9: Many Lives, Many Masters (Deep Midnight Navy) -->
+          <div class="spine-book spine-souls" data-book-index="6" tabindex="0" role="button" aria-label="Many Lives, Many Masters by Brian Weiss">
+            <div class="spine-content">
+              <span style="font-size: 0.52rem; opacity: 0.8;">WEISS</span>
+              <span class="spine-title text-vertical-rl">MANY LIVES</span>
+              <span style="font-size: 0.52rem; opacity: 0.8;">&lowast;</span>
+            </div>
+          </div>
+
+          <!-- RIGHT BOOK 10: The Alchemist (Warm Ochre / Mustard) -->
+          <div class="spine-book spine-alchemist" data-book-index="2" tabindex="0" role="button" aria-label="The Alchemist by Paulo Coelho">
+            <div class="spine-content">
+              <span class="spine-author text-horizontal">COELHO</span>
+              <span class="spine-title text-vertical-rl">The Alchemist</span>
+              <span style="font-size: 0.52rem; opacity: 0.8;">MAKTUB</span>
+            </div>
+          </div>
+
+          <!-- RIGHT BOOK 11: Russian Classics (Chocolate Brown with Boxed Frame) -->
+          <div class="spine-book spine-russian" data-book-index="1" tabindex="0" role="button" aria-label="Dostoevsky Russian Classics">
+            <div class="spine-content">
+              <div class="spine-inner-box">
+                <span style="font-size: 0.5rem; text-transform: uppercase;">CLASSICS</span>
+                <span class="spine-title">DOSTOEVSKY</span>
+                <span style="font-size: 0.5rem;">VOL. II</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT BOOK 12: Slender Orange End Book -->
+          <div class="spine-book spine-endorange" data-book-index="4" tabindex="0" role="button" aria-label="Negotiation Notes">
+            <div class="spine-content" style="padding: 10px 2px;">
+              <span class="text-vertical-rl" style="font-size: 0.65rem; font-weight: 600;">TACTICAL NOTES</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Minimal Thin Shelf Horizon Line -->
+      <div class="minimal-shelf-line"></div>
+    </section>
+
+    <!-- SECTION 07: EDITORIAL LIBRARY ARCHIVE -->
+    <section class="editorial-library-section" id="archive">
+      <div class="library-inner-container">
+        
+        <header class="library-section-header">
+          <div class="library-header-text">
+            <span class="library-section-tag">Editorial Catalog</span>
+            <h2 class="library-section-title">Reading <em>Archive</em></h2>
+            <p class="library-section-description">
+              A private digital publication documenting literature, psychology, and cinematic craft. Every book possesses its own visual world and complete original text.
+            </p>
+          </div>
+
+          <!-- Filter Bar: Plain text links (NO BOXES) -->
+          <div class="library-filter-bar">
+            <button class="filter-item-btn active" data-filter="all">All Volumes</button>
+            <button class="filter-item-btn" data-filter="Classics">Classics</button>
+            <button class="filter-item-btn" data-filter="Philosophy">Philosophy</button>
+            <button class="filter-item-btn" data-filter="Psychology">Psychology</button>
+            <button class="filter-item-btn" data-filter="Cinema & Craft">Cinema &amp; Craft</button>
+            <button class="filter-item-btn" data-filter="Contemporary">Contemporary</button>
+          </div>
+        </header>
+
+        <!-- Asymmetrical Editorial Book Cards -->
+        <div class="editorial-grid-layout" id="editorialLibraryGrid">
+          <!-- Populated dynamically by bookshelf.js -->
         </div>
 
       </div>
     </section>
 
-    <!-- SECTION 10: PERSONAL BRANDING & ABOUT SECTION -->
-    <section class="curator-statement-section" id="about">
-      <div class="curator-statement-inner">
-        <span class="statement-tag">Curator’s Note</span>
-        <blockquote class="statement-quote">
-          “Films · Writings · Psychology —<br>Exploring emotion, art, and the <em>rawness of being human</em>.”
-        </blockquote>
-        <p class="statement-prose">
-          Atif Recommends was built not as an algorithmic recommendation feed, but as an intentional private library. Each entry reflects years of reading, deconstructing scenes, and examining the patterns of human behavior across literature, cinema, and philosophy.
-        </p>
-        <div class="curator-signature-block">
-          <span class="signature-name">Atif Khan</span>
-          <span class="signature-role">Curator · Atif Recommends</span>
+    <!-- SECTION 06: PERSONAL PORTFOLIO INTEGRATION -->
+    <section class="portfolio-feature-block" id="portfolio">
+      <div class="portfolio-block-inner">
+        
+        <div class="portfolio-intro-text">
+          <span class="portfolio-kicker">Personal Portfolio</span>
+          <h2 class="portfolio-creator-name">Atif <em>Khan</em></h2>
+          <p class="portfolio-tagline-quote">
+            &ldquo;Engineer by logic. Creator by instinct.&rdquo;
+          </p>
+          <p class="portfolio-body-desc">
+            Personal portfolio of Atif Khan &mdash; AI &amp; Data Science student, full-stack engineer, filmmaker, writer, and co-author of <em>The Frequency of the Dead</em> from Bhopal, India.
+          </p>
+          <a href="https://atif-web-mu.vercel.app/" target="_blank" rel="noopener noreferrer" class="portfolio-direct-link">
+            <span>Explore live portfolio</span>
+            <i class="bi bi-arrow-up-right"></i>
+          </a>
         </div>
-      </div>
-    </section>
-  </main>
 
-  <!-- INTERACTIVE BOOK INSPECTOR MODAL (FOR PHYSICAL 3D SHELF) -->
-  <div id="bookInspectorModal" class="book-inspector-modal" role="dialog" aria-modal="true" aria-labelledby="inspectorTitle">
-    <div class="inspector-card-surface">
-      <button id="inspectorCloseBtn" class="inspector-close-btn" aria-label="Close inspector">
-        <i class="bi bi-x-lg"></i>
-      </button>
-
-      <!-- Visual Preview Column -->
-      <div class="inspector-visual-pane">
-        <div id="inspectorBookPreview" class="inspector-book-preview">
-          <!-- Injected dynamically -->
-        </div>
-      </div>
-
-      <!-- Information Column -->
-      <div class="inspector-info-pane">
         <div>
-          <span id="inspectorCategory" class="inspector-category-badge">Category</span>
-          <h3 id="inspectorTitle" class="inspector-book-title">Title</h3>
-          <span id="inspectorAuthor" class="inspector-book-author">Author</span>
-          <blockquote id="inspectorQuote" class="inspector-quote">Quote</blockquote>
-          <p id="inspectorNote" class="inspector-note">Note</p>
+          <a href="https://atif-web-mu.vercel.app/" target="_blank" rel="noopener noreferrer" class="portfolio-card-preview">
+            <div class="preview-badge-row">
+              <span class="ak-pill">AK</span>
+              <div class="voice-switch-pill">
+                <span class="active">The Lab</span>
+                <span>&bull;</span>
+                <span>The Studio</span>
+              </div>
+            </div>
+            <h3 class="preview-headline">Atif Khan</h3>
+            <p class="preview-tagline">Engineer by logic. Creator by instinct. Based in Bhopal, India.</p>
+            <div class="preview-pills-row">
+              <span class="preview-tag">Full-Stack</span>
+              <span class="preview-tag">Filmmaking</span>
+              <span class="preview-tag">Storytelling</span>
+            </div>
+          </a>
         </div>
 
-        <a id="inspectorEnterBtn" href="#" class="inspector-enter-btn">
-          <span>Enter Literary World</span>
-          <i class="bi bi-arrow-right"></i>
-        </a>
       </div>
-    </div>
-  </div>
+    </section>
 
-  <!-- EDITORIAL FOOTER -->
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <div>
-        <div class="footer-brand-title">Atif Recommends</div>
-        <p class="footer-bio">
-          A personal literary archive and digital library exploring narrative craft, psychology, and the human condition. Curated by Atif Khan.
+    <!-- SECTION 10: ABOUT & CURATOR STATEMENT -->
+    <section class="curator-about-block" id="about">
+      <div class="curator-about-inner">
+        <span class="about-eyebrow">Curator&rsquo;s Note</span>
+        <h2 class="about-quote-headline">
+          &ldquo;Films &middot; Writings &middot; Psychology &mdash;<br>Exploring emotion, art, and the <em>rawness of being human</em>.&rdquo;
+        </h2>
+        <p class="about-narrative-prose">
+          Atif Recommends is maintained as an independent literary publication. Each entry documents reflections, scene breakdowns, and notes gathered through sustained reading across classic literature, psychology, and dramatic writing.
         </p>
+        <p class="curator-credits">Atif Khan &mdash; Curator</p>
       </div>
+    </section>
 
+    <!-- QUIET EDITORIAL FOOTER -->
+    <footer class="canvas-footer">
       <div>
-        <div class="footer-col-title">Navigation</div>
-        <ul class="footer-links">
-          <li><a href="#home">The Bookshelf</a></li>
-          <li><a href="#archive">Reading Archive</a></li>
-          <li><a href="#about">About the Library</a></li>
-          <li><a href="https://atif-portfolio.vercel.app" target="_blank" rel="noopener noreferrer" class="dynamic-portfolio-link">Portfolio Website</a></li>
-        </ul>
+        <span>&copy; 2026 Atif Khan &middot; Atif Recommends</span>
       </div>
-
-      <div>
-        <div class="footer-col-title">Connect</div>
-        <ul class="footer-links">
-          <li><a href="https://instagram.com/atifrecommends" target="_blank" rel="noopener noreferrer">Instagram (@atifrecommends)</a></li>
-          <li><a href="https://github.com/ATIFIXATION" target="_blank" rel="noopener noreferrer">GitHub (@ATIFIXATION)</a></li>
-          <li><a href="mailto:atif64896@gmail.com">Direct Inquiry</a></li>
-        </ul>
+      <div class="footer-nav-quiet">
+        <a href="#bookshelf">Bookshelf</a>
+        <a href="#archive">Archive</a>
+        <a href="#about">About</a>
+        <a href="https://atif-web-mu.vercel.app/" target="_blank" rel="noopener noreferrer">Portfolio</a>
+        <a href="https://instagram.com/atifrecommends" target="_blank" rel="noopener noreferrer">Instagram</a>
       </div>
-    </div>
+    </footer>
 
-    <div class="footer-bottom">
-      <span>&copy; 2026 Atif Khan · Atif Recommends</span>
-      <span>Designed &amp; Curated as an Independent Publication</span>
-    </div>
-  </footer>
+  </div>
 
   <!-- Scripts -->
   <script src="assets/js/site-config.js"></script>

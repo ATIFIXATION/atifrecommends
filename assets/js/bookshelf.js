@@ -1,252 +1,259 @@
 /**
- * ATIF RECOMMENDS — INTERACTIVE 3D BOOKSHELF & ARCHIVE LOGIC
+ * ATIF RECOMMENDS — V2 BOOKSHELF ENGINE (REFERENCE: JZA "THE PERSONAL CURATION")
  */
 
 document.addEventListener('DOMContentLoaded', () => {
   const config = window.ATIF_CONFIG;
   if (!config) return;
 
-  // Initialize Elements
-  initShelfBooks(config.books);
-  initArchiveCarousel(config.books);
-  initEditorialGrid(config.books);
-  initViewSwitcher();
+  initBookshelf(config.books);
+  initEditorialArchive(config.books);
   initCategoryFilters();
-  initInspectorModal(config.books);
-  initNavScroll();
   initMobileNav();
-  initPortfolioLinks(config.portfolioUrl);
+  centerShelfOnFeatured();
 });
 
 /**
- * Render the 3D Bookshelf (Reference 01)
+ * Bespoke Vector Artworks for the Central Featured Front Cover (Reference: JZA Sculpture Artwork)
  */
-function initShelfBooks(books) {
-  const shelfRow = document.getElementById('shelfBooksRow');
-  if (!shelfRow) return;
+const FEATURED_ARTWORKS = {
+  // Classical seated contemplative sculpture / muse (Direct reference to JZA)
+  "the-art-of-storytelling": `
+    <svg viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+      <rect width="120" height="140" fill="#0D1117"/>
+      <!-- Classical Sculpture Figure Silhouette -->
+      <path d="M60 28C54 28 50 32 50 38C50 43 53 47 57 48C51 52 47 60 47 70C47 74 48 82 50 86L46 95C44 100 48 106 54 106H68C74 106 78 100 76 95L72 86C74 82 75 74 75 70C75 60 71 52 65 48C69 47 72 43 72 38C72 32 68 28 62 28H60Z" fill="#FAF8F5" fill-opacity="0.95"/>
+      <path d="M54 52C50 56 42 66 40 78C38 86 42 94 48 95L52 78L54 52Z" fill="#FAF8F5" fill-opacity="0.75"/>
+      <path d="M68 52C72 56 80 66 82 78C84 86 80 94 74 95L70 78L68 52Z" fill="#FAF8F5" fill-opacity="0.75"/>
+      <circle cx="61" cy="38" r="6" fill="#0D1117"/>
+      <!-- Classical Pedestal -->
+      <rect x="36" y="106" width="50" height="6" fill="#FAF8F5" fill-opacity="0.85"/>
+      <line x1="28" y1="118" x2="94" y2="118" stroke="#FAF8F5" stroke-opacity="0.3" stroke-width="1"/>
+      <text x="61" y="128" text-anchor="middle" fill="#FAF8F5" font-family="'Space Grotesk', sans-serif" font-size="6" letter-spacing="1.5">VISIBLE SIGNS</text>
+    </svg>
+  `,
 
-  shelfRow.innerHTML = '';
+  "crime-and-punishment": `
+    <svg viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+      <rect width="120" height="140" fill="#140E0E"/>
+      <path d="M30 115V55C30 38 90 38 90 55V115" stroke="#FAF8F5" stroke-width="1.5"/>
+      <circle cx="60" cy="55" r="16" stroke="#B32626" stroke-width="2"/>
+      <line x1="60" y1="35" x2="60" y2="115" stroke="#FAF8F5" stroke-opacity="0.4" stroke-width="1"/>
+      <line x1="42" y1="85" x2="78" y2="85" stroke="#FAF8F5" stroke-opacity="0.4" stroke-width="1"/>
+      <text x="60" y="128" text-anchor="middle" fill="#FAF8F5" font-family="'Cormorant Garamond', serif" font-size="7" letter-spacing="2">PETERSBURG &middot; 1866</text>
+    </svg>
+  `,
 
-  books.forEach((book, index) => {
-    const bookEl = document.createElement('div');
-    bookEl.className = 'book-3d';
-    bookEl.setAttribute('tabindex', '0');
-    bookEl.setAttribute('role', 'button');
-    bookEl.setAttribute('aria-label', `${book.title} by ${book.author}`);
-    bookEl.dataset.bookId = book.id;
+  "the-alchemist": `
+    <svg viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+      <rect width="120" height="140" fill="#1C140C"/>
+      <circle cx="60" cy="55" r="22" stroke="#E0A436" stroke-width="1.5"/>
+      <path d="M25 110C45 92 75 92 95 110" stroke="#FAF8F5" stroke-width="1.5"/>
+      <path d="M60 33V77M38 55H82" stroke="#E0A436" stroke-opacity="0.6" stroke-width="1"/>
+      <text x="60" y="128" text-anchor="middle" fill="#FAF8F5" font-family="'Cormorant Garamond', serif" font-size="7" letter-spacing="2">MAKTUB &middot; DESERT</text>
+    </svg>
+  `,
 
-    // Dimensions and 3D positioning
-    const height = book.height || '340px';
-    const width = book.width || '44px';
-    const tilt = book.tilt || '0deg';
+  "animal-farm": `
+    <svg viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+      <rect width="120" height="140" fill="#1A1F24"/>
+      <polygon points="60,35 68,52 86,52 72,63 77,80 60,70 43,80 48,63 34,52 52,52" fill="#C82D30"/>
+      <line x1="28" y1="105" x2="92" y2="105" stroke="#FAF8F5" stroke-width="2"/>
+      <text x="60" y="124" text-anchor="middle" fill="#FAF8F5" font-family="'Space Grotesk', sans-serif" font-size="6.5" letter-spacing="1">ORWELL &middot; 1945</text>
+    </svg>
+  `,
 
-    bookEl.style.width = width;
-    bookEl.style.height = height;
-    bookEl.style.transform = `rotateZ(${tilt})`;
+  "never-split-the-difference": `
+    <svg viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+      <rect width="120" height="140" fill="#120E0C"/>
+      <circle cx="60" cy="65" r="28" stroke="#E8572A" stroke-width="1.5"/>
+      <circle cx="60" cy="65" r="14" stroke="#FAF8F5" stroke-width="1.5"/>
+      <line x1="25" y1="65" x2="95" y2="65" stroke="#E8572A" stroke-width="1.2"/>
+      <line x1="60" y1="30" x2="60" y2="100" stroke="#E8572A" stroke-width="1.2"/>
+      <text x="60" y="126" text-anchor="middle" fill="#FAF8F5" font-family="'Space Grotesk', sans-serif" font-size="6.5" letter-spacing="1.5">TACTICAL EMPATHY</text>
+    </svg>
+  `,
 
-    bookEl.innerHTML = `
-      <div class="book-spine-face" style="background: ${book.spineBg}; color: ${book.spineTextColor};">
-        <div class="spine-headband-top"></div>
-        <div class="spine-header-mark" style="color: ${book.spineAccentColor};">A.K.</div>
-        <div class="spine-title-vertical" style="color: ${book.spineTextColor};">${book.spineTitle}</div>
-        <div class="spine-author-mark" style="color: ${book.spineAccentColor};">${book.spineAuthor}</div>
-        <div class="spine-headband-bottom"></div>
-      </div>
-      <div class="book-top-face"></div>
-      <div class="book-side-face"></div>
-      <div class="book-shelf-shadow"></div>
-    `;
+  "the-canterville-ghost": `
+    <svg viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+      <rect width="120" height="140" fill="#1F1015"/>
+      <path d="M40 105C40 70 45 45 60 45C75 45 80 70 80 105C72 100 68 106 60 100C52 106 48 100 40 105Z" stroke="#DE9DA6" stroke-width="1.5"/>
+      <circle cx="54" cy="65" r="2.5" fill="#DE9DA6"/>
+      <circle cx="66" cy="65" r="2.5" fill="#DE9DA6"/>
+      <text x="60" y="126" text-anchor="middle" fill="#FAF8F5" font-family="'Cormorant Garamond', serif" font-size="7" letter-spacing="1.5">CANTERVILLE CHASE</text>
+    </svg>
+  `,
 
-    // Interaction: Click to inspect
-    bookEl.addEventListener('click', () => {
-      openBookInspector(book);
-    });
+  "many-lives-many-masters": `
+    <svg viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+      <rect width="120" height="140" fill="#0E1420"/>
+      <ellipse cx="60" cy="65" rx="30" ry="12" stroke="#FAF8F5" stroke-opacity="0.5" stroke-width="1" transform="rotate(-25 60 65)"/>
+      <ellipse cx="60" cy="65" rx="30" ry="12" stroke="#FAF8F5" stroke-opacity="0.5" stroke-width="1" transform="rotate(25 60 65)"/>
+      <circle cx="60" cy="65" r="7" fill="#D4AF37"/>
+      <text x="60" y="126" text-anchor="middle" fill="#FAF8F5" font-family="'Cormorant Garamond', serif" font-size="7" letter-spacing="2">TIME &middot; CONSCIOUSNESS</text>
+    </svg>
+  `,
 
-    bookEl.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        openBookInspector(book);
-      }
-    });
+  "ohh-yes-i-am-single": `
+    <svg viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+      <rect width="120" height="140" fill="#F4EFEA"/>
+      <line x1="30" y1="45" x2="90" y2="45" stroke="#171513" stroke-width="2"/>
+      <line x1="30" y1="60" x2="75" y2="60" stroke="#171513" stroke-width="2"/>
+      <line x1="30" y1="75" x2="85" y2="75" stroke="#171513" stroke-width="2"/>
+      <rect x="30" y="90" width="18" height="6" fill="#D32F2F"/>
+      <text x="60" y="126" text-anchor="middle" fill="#171513" font-family="'Space Grotesk', sans-serif" font-size="6.5" letter-spacing="1">DURJOY DATTA</text>
+    </svg>
+  `,
 
-    shelfRow.appendChild(bookEl);
+  "cinematic-notes": `
+    <svg viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+      <rect width="120" height="140" fill="#100E0D"/>
+      <rect x="35" y="45" width="50" height="40" stroke="#FAF8F5" stroke-width="1.5"/>
+      <line x1="45" y1="45" x2="45" y2="85" stroke="#FAF8F5" stroke-opacity="0.5" stroke-width="1"/>
+      <line x1="75" y1="45" x2="75" y2="85" stroke="#FAF8F5" stroke-opacity="0.5" stroke-width="1"/>
+      <text x="60" y="124" text-anchor="middle" fill="#FAF8F5" font-family="'Space Grotesk', sans-serif" font-size="6" letter-spacing="1.5">35MM &middot; SCENE</text>
+    </svg>
+  `
+};
+
+let featuredIndex = 0; // The Art of Storytelling
+
+function initBookshelf(books) {
+  const featuredCover = document.getElementById('featuredBookCover');
+  if (!featuredCover) return;
+
+  // Render initial featured book
+  renderFeaturedBook(books[featuredIndex]);
+
+  // Click on featured book opens its page
+  featuredCover.addEventListener('click', () => {
+    window.location.href = books[featuredIndex].url;
   });
-}
 
-/**
- * Render the 3D Perspective Archive Carousel (Reference 02)
- */
-let currentCarouselIndex = 0;
-
-function initArchiveCarousel(books) {
-  const track = document.getElementById('carousel3dTrack');
-  if (!track) return;
-
-  track.innerHTML = '';
-
-  books.forEach((book, index) => {
-    const card = document.createElement('div');
-    card.className = 'carousel-card-item';
-    card.dataset.index = index;
-    card.style.background = `linear-gradient(165deg, ${book.accent}22 0%, #171513 100%)`;
-
-    card.innerHTML = `
-      <div class="card-top-meta">
-        <span class="card-numeral">VOL. 0${index + 1}</span>
-        <span style="color: ${book.accent};">${book.category}</span>
-      </div>
-      <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center;">
-        <h4 style="font-family: var(--font-display); font-size: 1.8rem; line-height: 1.15; color: var(--warm-paper); margin-bottom: 0.4rem;">${book.title}</h4>
-        <span style="font-family: var(--font-classic); font-size: 0.75rem; letter-spacing: 2px; color: ${book.accent}; text-transform: uppercase;">${book.author}</span>
-        <p style="font-family: var(--font-editorial); font-style: italic; font-size: 0.95rem; color: rgba(241, 235, 221, 0.7); margin-top: 1.2rem; line-height: 1.6;">"${book.quote}"</p>
-      </div>
-      <div style="border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1rem; display: flex; justify-content: space-between; align-items: center; font-family: var(--font-mono); font-size: 0.65rem; color: var(--warm-paper); letter-spacing: 1.5px; text-transform: uppercase;">
-        <span>Read World</span>
-        <i class="bi bi-arrow-right"></i>
-      </div>
-    `;
-
-    card.addEventListener('click', () => {
-      if (index === currentCarouselIndex) {
-        window.location.href = book.url;
-      } else {
-        setCarouselIndex(index, books);
-      }
-    });
-
-    track.appendChild(card);
-  });
-
-  updateCarouselLayout(books);
-
-  // Setup Carousel Controls
-  const prevBtn = document.getElementById('carouselPrevBtn');
-  const nextBtn = document.getElementById('carouselNextBtn');
-  const infoBtn = document.getElementById('carouselInfoBtn');
-
-  if (prevBtn) {
-    prevBtn.addEventListener('click', () => {
-      currentCarouselIndex = (currentCarouselIndex - 1 + books.length) % books.length;
-      updateCarouselLayout(books);
-    });
-  }
-
-  if (nextBtn) {
-    nextBtn.addEventListener('click', () => {
-      currentCarouselIndex = (currentCarouselIndex + 1) % books.length;
-      updateCarouselLayout(books);
-    });
-  }
-
-  if (infoBtn) {
-    infoBtn.addEventListener('click', () => {
-      openBookInspector(books[currentCarouselIndex]);
-    });
-  }
-}
-
-function setCarouselIndex(index, books) {
-  currentCarouselIndex = index;
-  updateCarouselLayout(books);
-}
-
-function updateCarouselLayout(books) {
-  const cards = document.querySelectorAll('.carousel-card-item');
-  const total = books.length;
-
-  cards.forEach((card, idx) => {
-    card.classList.remove('active', 'prev-1', 'next-1', 'prev-2', 'next-2', 'hidden');
-
-    const diff = (idx - currentCarouselIndex + total) % total;
-
-    if (diff === 0) {
-      card.classList.add('active');
-    } else if (diff === 1) {
-      card.classList.add('next-1');
-    } else if (diff === 2) {
-      card.classList.add('next-2');
-    } else if (diff === total - 1) {
-      card.classList.add('prev-1');
-    } else if (diff === total - 2) {
-      card.classList.add('prev-2');
-    } else {
-      card.classList.add('hidden');
+  featuredCover.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      window.location.href = books[featuredIndex].url;
     }
   });
 
-  const yearBadge = document.getElementById('carouselActiveBadge');
-  if (yearBadge && books[currentCarouselIndex]) {
-    yearBadge.textContent = books[currentCarouselIndex].title;
+  // Attach listeners to all shelf spines
+  const spines = document.querySelectorAll('.spine-book');
+  spines.forEach((spine, idx) => {
+    const bookIndex = parseInt(spine.dataset.bookIndex, 10);
+    const book = books[bookIndex];
+
+    spine.addEventListener('click', () => {
+      featuredIndex = bookIndex;
+      renderFeaturedBook(book);
+    });
+
+    spine.addEventListener('dblclick', () => {
+      window.location.href = book.url;
+    });
+
+    spine.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        window.location.href = book.url;
+      } else if (e.key === ' ') {
+        e.preventDefault();
+        featuredIndex = bookIndex;
+        renderFeaturedBook(book);
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        const next = spines[idx + 1] || spines[0];
+        next.focus();
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        const prev = spines[idx - 1] || spines[spines.length - 1];
+        prev.focus();
+      }
+    });
+  });
+}
+
+function renderFeaturedBook(book) {
+  const featuredCover = document.getElementById('featuredBookCover');
+  const innerFrame = document.getElementById('featuredInnerFrame');
+  const titleEl = document.getElementById('featuredCoverTitle');
+  const authorEl = document.getElementById('featuredCoverAuthor');
+
+  if (!featuredCover || !book) return;
+
+  featuredCover.setAttribute('aria-label', `Featured Book: ${book.title} by ${book.author}. Click to open.`);
+
+  if (titleEl) titleEl.textContent = book.title;
+  if (authorEl) authorEl.textContent = book.author;
+
+  // Distinct background color for featured card
+  if (book.bgCover) {
+    featuredCover.querySelector('.featured-cover-surface').style.backgroundColor = book.bgCover;
+  }
+
+  // Insert crisp inline SVG artwork
+  if (innerFrame) {
+    const artwork = FEATURED_ARTWORKS[book.id] || FEATURED_ARTWORKS["the-art-of-storytelling"];
+    innerFrame.innerHTML = artwork;
+  }
+
+  // Visual lift on active spine
+  document.querySelectorAll('.spine-book').forEach(s => {
+    if (parseInt(s.dataset.bookIndex, 10) === featuredIndex) {
+      s.style.transform = 'translateY(-8px)';
+    } else {
+      s.style.transform = '';
+    }
+  });
+}
+
+/**
+ * Center Shelf on Featured Book on Load / Resize
+ */
+function centerShelfOnFeatured() {
+  const track = document.querySelector('.shelf-scroll-track');
+  const featured = document.getElementById('featuredBookCover');
+  if (track && featured) {
+    setTimeout(() => {
+      const scrollPos = featured.offsetLeft - (track.clientWidth / 2) + (featured.clientWidth / 2);
+      track.scrollTo({ left: scrollPos, behavior: 'smooth' });
+    }, 150);
   }
 }
 
 /**
- * View Switcher between 3D Shelf and 3D Archive Carousel
+ * Build Asymmetrical Editorial Library Grid
  */
-function initViewSwitcher() {
-  const shelfToggle = document.getElementById('viewToggleShelf');
-  const archiveToggle = document.getElementById('viewToggleArchive');
-  const shelfView = document.getElementById('bookshelfViewSection');
-  const archiveView = document.getElementById('archiveCarouselSection');
-  const stage = document.querySelector('.bookshelf-editorial-stage');
-
-  if (!shelfToggle || !archiveToggle || !shelfView || !archiveView) return;
-
-  shelfToggle.addEventListener('click', () => {
-    shelfToggle.classList.add('active');
-    archiveToggle.classList.remove('active');
-    shelfView.style.display = 'block';
-    archiveView.classList.remove('active');
-    if (stage) stage.style.background = 'var(--warm-paper)';
-  });
-
-  archiveToggle.addEventListener('click', () => {
-    archiveToggle.classList.add('active');
-    shelfToggle.classList.remove('active');
-    shelfView.style.display = 'none';
-    archiveView.classList.add('active');
-    if (stage) stage.style.background = 'var(--deep-navy)';
-  });
-}
-
-/**
- * Render Editorial Book Grid (Section 06)
- */
-function initEditorialGrid(books) {
-  const grid = document.getElementById('editorialBooksGrid');
+function initEditorialArchive(books) {
+  const grid = document.getElementById('editorialLibraryGrid');
   if (!grid) return;
 
   grid.innerHTML = '';
 
-  // Asymmetrical span pattern
-  const spans = ['span-6', 'span-6', 'span-4', 'span-4', 'span-4', 'span-8', 'span-4', 'span-6', 'span-6'];
+  const colSpans = ['col-span-6', 'col-span-6', 'col-span-4', 'col-span-4', 'col-span-4', 'col-span-8', 'col-span-4', 'col-span-6', 'col-span-6'];
 
   books.forEach((book, idx) => {
-    const spanClass = spans[idx % spans.length];
+    const spanClass = colSpans[idx % colSpans.length];
     const card = document.createElement('a');
     card.href = book.url;
-    card.className = `editorial-card ${spanClass}`;
+    card.className = `book-editorial-card ${spanClass}`;
     card.dataset.category = book.category;
 
-    const tagsHtml = (book.tags || []).map(t => `<span class="card-tag-pill">${t}</span>`).join('');
+    const tagsHtml = (book.tags || []).map(t => `<span class="card-tag-item">${t}</span>`).join('');
 
     card.innerHTML = `
       <div>
-        <div class="card-top-meta">
-          <span class="card-numeral">0${idx + 1} — ARCHIVE</span>
-          <span style="color: ${book.accent};">${book.category}</span>
+        <div class="card-meta-row">
+          <span class="card-category-label">${book.category}</span>
+          <span>Vol. 0${idx + 1}</span>
         </div>
-        <div class="card-title-group">
-          <h3>${book.title}</h3>
-          <span class="card-author">${book.author}</span>
-        </div>
-        <p class="card-note">${book.note}</p>
-        <div class="card-quote-snip">"${book.quote}"</div>
+        <h3 class="card-title">${book.title}</h3>
+        <span class="card-author-name">${book.author}</span>
+        <p class="card-summary-text">${book.note}</p>
+        <blockquote class="card-quote-snippet">&ldquo;${book.quote}&rdquo;</blockquote>
       </div>
       <div>
-        <div class="card-tags">${tagsHtml}</div>
-        <div class="card-footer-cta">
-          <span>Enter Literary World</span>
+        <div class="card-tags-group">${tagsHtml}</div>
+        <div class="card-read-action">
+          <span>Read Book Page</span>
           <i class="bi bi-arrow-right"></i>
         </div>
       </div>
@@ -257,18 +264,18 @@ function initEditorialGrid(books) {
 }
 
 /**
- * Filter Editorial Cards by Category
+ * Filter Tabs
  */
 function initCategoryFilters() {
-  const filterPills = document.querySelectorAll('.filter-pill');
-  const cards = document.querySelectorAll('.editorial-card');
+  const filterBtns = document.querySelectorAll('.filter-item-btn');
+  const cards = document.querySelectorAll('.book-editorial-card');
 
-  filterPills.forEach(pill => {
-    pill.addEventListener('click', () => {
-      filterPills.forEach(p => p.classList.remove('active'));
-      pill.classList.add('active');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
 
-      const filter = pill.dataset.filter;
+      const filter = btn.dataset.filter;
 
       cards.forEach(card => {
         if (filter === 'all' || card.dataset.category === filter) {
@@ -282,120 +289,21 @@ function initCategoryFilters() {
 }
 
 /**
- * Book Inspector Drawer / Modal
- */
-let currentInspectorBook = null;
-
-function initInspectorModal(books) {
-  const modal = document.getElementById('bookInspectorModal');
-  const closeBtn = document.getElementById('inspectorCloseBtn');
-  if (!modal) return;
-
-  if (closeBtn) {
-    closeBtn.addEventListener('click', closeBookInspector);
-  }
-
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) {
-      closeBookInspector();
-    }
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.classList.contains('active')) {
-      closeBookInspector();
-    }
-  });
-}
-
-function openBookInspector(book) {
-  currentInspectorBook = book;
-  const modal = document.getElementById('bookInspectorModal');
-  if (!modal) return;
-
-  document.getElementById('inspectorCategory').textContent = book.category;
-  document.getElementById('inspectorTitle').textContent = book.title;
-  document.getElementById('inspectorAuthor').textContent = book.author;
-  document.getElementById('inspectorQuote').textContent = `"${book.quote}"`;
-  document.getElementById('inspectorNote').textContent = book.note;
-  
-  const enterBtn = document.getElementById('inspectorEnterBtn');
-  if (enterBtn) {
-    enterBtn.href = book.url;
-  }
-
-  const preview = document.getElementById('inspectorBookPreview');
-  if (preview) {
-    preview.style.background = `linear-gradient(160deg, ${book.accent} 0%, #171513 100%)`;
-    preview.innerHTML = `
-      <div style="font-family: var(--font-mono); font-size: 0.6rem; color: #fff; letter-spacing: 2px;">ATIF RECOMMENDS</div>
-      <div>
-        <h4 style="font-family: var(--font-display); font-size: 1.4rem; color: #fff; line-height: 1.2;">${book.title}</h4>
-        <div style="font-family: var(--font-classic); font-size: 0.7rem; color: ${book.secondaryAccent || '#d4b07a'}; letter-spacing: 1.5px; margin-top: 6px;">${book.author}</div>
-      </div>
-      <div style="font-family: var(--font-mono); font-size: 0.55rem; color: rgba(255,255,255,0.6); letter-spacing: 2px;">ORIGINAL EDITION</div>
-    `;
-  }
-
-  modal.classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeBookInspector() {
-  const modal = document.getElementById('bookInspectorModal');
-  if (modal) {
-    modal.classList.remove('active');
-    document.body.style.overflow = '';
-  }
-}
-
-/**
- * Sticky Navigation Blur and Shadow
- */
-function initNavScroll() {
-  const nav = document.querySelector('.site-nav');
-  if (!nav) return;
-
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 40) {
-      nav.classList.add('scrolled');
-    } else {
-      nav.classList.remove('scrolled');
-    }
-  });
-}
-
-/**
  * Mobile Navigation Toggle
  */
 function initMobileNav() {
-  const toggle = document.querySelector('.nav-toggle');
-  const navLinks = document.querySelector('.nav-links');
+  const toggle = document.querySelector('.canvas-nav-toggle');
+  const navLinks = document.querySelector('.nav-links-quiet');
 
   if (toggle && navLinks) {
     toggle.addEventListener('click', () => {
       navLinks.classList.toggle('open');
     });
 
-    // Close when clicking link
     navLinks.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         navLinks.classList.remove('open');
       });
     });
   }
-}
-
-/**
- * Portfolio Links configuration
- */
-function initPortfolioLinks(portfolioUrl) {
-  if (!portfolioUrl) return;
-
-  const links = document.querySelectorAll('.dynamic-portfolio-link');
-  links.forEach(link => {
-    link.href = portfolioUrl;
-    link.setAttribute('target', '_blank');
-    link.setAttribute('rel', 'noopener noreferrer');
-  });
 }

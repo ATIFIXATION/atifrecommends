@@ -1,0 +1,7 @@
+<svg viewBox="0 0 160 200" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <rect width="160" height="200" fill="#120A0A"/>
+  <path d="M40 160V60C40 38 120 38 120 60V160" stroke="#FAF8F5" stroke-width="1.8"/>
+  <path d="M80 40V160M55 90H105M55 125H105" stroke="#FAF8F5" stroke-width="1" opacity="0.5"/>
+  <circle cx="80" cy="100" r="22" stroke="#B32626" stroke-width="1.8"/>
+  <text x="80" y="185" text-anchor="middle" fill="#FAF8F5" font-family="serif" font-size="8" letter-spacing="2">PETERSBURG 1866</text>
+</svg>

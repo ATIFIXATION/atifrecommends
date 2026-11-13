@@ -1,0 +1,8 @@
+<svg viewBox="0 0 160 200" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <rect width="160" height="200" fill="#0D0E10"/>
+  <circle cx="80" cy="70" r="36" stroke="#FAF8F5" stroke-width="1.5" stroke-dasharray="3 3"/>
+  <path d="M80 34V106M44 70H116" stroke="#FAF8F5" stroke-width="1.2" opacity="0.6"/>
+  <path d="M52 145C62 132 98 132 108 145V170H52V145Z" stroke="#FAF8F5" stroke-width="1.5"/>
+  <circle cx="80" cy="120" r="14" stroke="#FAF8F5" stroke-width="1.5"/>
+  <text x="80" y="190" text-anchor="middle" fill="#FAF8F5" font-family="serif" font-size="9" letter-spacing="2">DRAMA &middot; SCENE</text>
+</svg>
