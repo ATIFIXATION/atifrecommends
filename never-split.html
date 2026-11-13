@@ -7,18 +7,24 @@
 <title>Never Split the Difference — Atif Recommends</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,300&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
   :root {
-    --ink: #0d0c0b;
-    --paper: #f7f4ef;
-    --cream: #ede9e1;
-    --gold: #b8965a;
-    --gold-light: #d4b07a;
-    --muted: #9a9085;
-    --red: #8b2318;
-    --warm: #6b5d52;
+    --font-headline: 'Caprasimo', Georgia, serif;
+    --font-accent:   'Fraunces', Georgia, serif;
+    --font-body:     'Inter', sans-serif;
+
+    --ink: #141414;
+    --paper: #DCC9A9;
+    --cream: #DCC9A9;
+    --gold: #4E6851;
+    --gold-light: #4E6851;
+    --muted: #7A7063;
+    --red: #B83A2D;
+    --warm: #4E6851;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -28,7 +34,7 @@
   body {
     background: var(--ink);
     color: var(--paper);
-    font-family: 'Outfit', sans-serif;
+    font-family: var(--font-body);
     font-weight: 300;
     line-height: 1.7;
     overflow-x: hidden;
@@ -46,8 +52,9 @@
   }
 
   /* ─── TYPOGRAPHY ─── */
-  .serif { font-family: 'Cormorant Garamond', serif; }
-  .mono  { font-family: 'Space Grotesk', sans-serif; }
+  .serif { font-family: var(--font-headline); }
+  blockquote.serif, em.serif { font-family: var(--font-accent); font-style: italic; font-weight: 300; }
+  .mono  { font-family: var(--font-body); font-weight: 500; }
 
   /* ─── HERO ─── */
   .hero {
@@ -240,7 +247,7 @@
   }
 
   .poem-line {
-    font-family: 'Outfit', sans-serif;
+    font-family: var(--font-body);
     font-size: clamp(15px, 1.5vw, 18px);
     font-weight: 300;
     color: rgba(247,244,239,0.75);
@@ -360,7 +367,7 @@
   }
 
   .step-content strong {
-    font-family: 'Outfit', sans-serif;
+    font-family: var(--font-body);
     font-size: 14px;
     font-weight: 500;
     color: var(--paper);

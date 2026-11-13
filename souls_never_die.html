@@ -4,18 +4,24 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Many Lives, Many Masters — A Journey Beyond</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Lora:ital,wght@0,400;0,500;1,400&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,300&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --indigo: #0B0F2B;
-    --deep: #060913;
-    --purple: #4B2E83;
-    --gold: #D4AF37;
-    --gold-light: #f0cf6c;
-    --mist: #F4F4F4;
-    --mist-dim: rgba(244,244,244,0.7);
-    --glass: rgba(255,255,255,0.05);
-    --glass-border: rgba(212,175,55,0.2);
+    --font-headline: 'Caprasimo', Georgia, serif;
+    --font-accent:   'Fraunces', Georgia, serif;
+    --font-body:     'Inter', sans-serif;
+
+    --indigo: #141414;
+    --deep: #141414;
+    --purple: #4E6851;
+    --gold: #4E6851;
+    --gold-light: #B83A2D;
+    --mist: #DCC9A9;
+    --mist-dim: rgba(220,201,169,0.7);
+    --glass: rgba(220,201,169,0.05);
+    --glass-border: rgba(78,104,81,0.25);
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -25,7 +31,7 @@
   body {
     background: var(--deep);
     color: var(--mist);
-    font-family: 'Lora', serif;
+    font-family: var(--font-body);
     overflow-x: hidden;
   }
 
@@ -53,14 +59,14 @@
     transition: all 0.4s ease;
   }
   .nav-logo {
-    font-family: 'Cinzel', serif;
+    font-family: var(--font-headline);
     font-size: 1rem; font-weight: 600;
     color: var(--gold); letter-spacing: 0.15em;
     text-decoration: none;
   }
   .nav-links { display: flex; gap: 2.2rem; list-style: none; }
   .nav-links a {
-    font-family: 'Raleway', sans-serif;
+    font-family: var(--font-body); font-weight: 500;
     font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
     color: rgba(244,244,244,0.7); text-decoration: none;
     transition: color 0.3s;
@@ -112,13 +118,13 @@
   .hero-content { position: relative; z-index: 2; }
 
   .hero-eyebrow {
-    font-family: 'Raleway', sans-serif;
+    font-family: var(--font-body); font-weight: 500;
     font-size: 0.75rem; letter-spacing: 0.35em; text-transform: uppercase;
     color: var(--gold); margin-bottom: 1.5rem;
     animation: fadeUp 1.2s ease forwards; opacity: 0;
   }
   .hero-title {
-    font-family: 'Cinzel', serif;
+    font-family: var(--font-headline);
     font-size: clamp(2.8rem, 7vw, 5.5rem);
     font-weight: 800; line-height: 1.1;
     color: var(--mist);
@@ -126,7 +132,7 @@
   }
   .hero-title span { color: var(--gold); }
   .hero-sub {
-    font-family: 'Lora', serif; font-style: italic;
+    font-family: var(--font-body); font-style: italic;
     font-size: clamp(1rem, 2.5vw, 1.3rem);
     color: rgba(244,244,244,0.65); margin: 1.4rem 0 2.8rem;
     max-width: 550px;
@@ -140,7 +146,7 @@
     padding: 0.9rem 2.4rem;
     background: linear-gradient(135deg, var(--gold), #b8940a);
     color: var(--deep);
-    font-family: 'Raleway', sans-serif; font-weight: 500;
+    font-family: var(--font-body); font-weight: 500; font-weight: 500;
     font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase;
     border: none; border-radius: 2px; cursor: pointer;
     transition: all 0.3s; text-decoration: none; display: inline-block;
@@ -150,7 +156,7 @@
     padding: 0.9rem 2.4rem;
     background: transparent;
     color: var(--gold);
-    font-family: 'Raleway', sans-serif; font-weight: 500;
+    font-family: var(--font-body); font-weight: 500; font-weight: 500;
     font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase;
     border: 1px solid rgba(212,175,55,0.5); border-radius: 2px; cursor: pointer;
     transition: all 0.3s; text-decoration: none; display: inline-block;
@@ -159,7 +165,7 @@
 
   .hero-scroll {
     position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
-    font-family: 'Raleway', sans-serif; font-size: 0.7rem; letter-spacing: 0.2em;
+    font-family: var(--font-body); font-weight: 500; font-size: 0.7rem; letter-spacing: 0.2em;
     color: rgba(244,244,244,0.4); text-transform: uppercase;
     animation: fadeUp 1.2s 0.8s ease forwards, pulse 2.5s 2s infinite; opacity: 0;
     display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
@@ -188,12 +194,12 @@
     max-width: 1200px; margin: 0 auto;
   }
   .section-label {
-    font-family: 'Raleway', sans-serif;
+    font-family: var(--font-body); font-weight: 500;
     font-size: 0.7rem; letter-spacing: 0.35em; text-transform: uppercase;
     color: var(--gold); margin-bottom: 1rem;
   }
   .section-title {
-    font-family: 'Cinzel', serif;
+    font-family: var(--font-headline);
     font-size: clamp(1.8rem, 4vw, 3rem);
     color: var(--mist); margin-bottom: 1.5rem; line-height: 1.2;
   }
@@ -230,11 +236,11 @@
     background: radial-gradient(circle at 30% 30%, rgba(212,175,55,0.15), transparent 60%);
   }
   .book-cover-title {
-    font-family: 'Cinzel', serif; font-size: 1.3rem; font-weight: 800;
+    font-family: var(--font-headline); font-size: 1.3rem; font-weight: 800;
     color: var(--gold); line-height: 1.3; margin-bottom: 0.5rem; position: relative;
   }
   .book-cover-author {
-    font-family: 'Lora', serif; font-style: italic;
+    font-family: var(--font-body); font-style: italic;
     font-size: 0.85rem; color: rgba(244,244,244,0.6); position: relative;
   }
   .book-orb {
@@ -251,7 +257,7 @@
     background: var(--glass); border: 1px solid var(--glass-border);
     border-radius: 4px;
   }
-  .meta-label { font-family: 'Raleway', sans-serif; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
+  .meta-label { font-family: var(--font-body); font-weight: 500; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
   .meta-value { font-size: 0.95rem; color: var(--mist); }
 
   /* Timeline */
@@ -268,7 +274,7 @@
     background: var(--gold);
     box-shadow: 0 0 10px var(--gold);
   }
-  .timeline-num { font-family: 'Cinzel', serif; font-size: 1.5rem; color: rgba(212,175,55,0.25); line-height: 1; }
+  .timeline-num { font-family: var(--font-headline); font-size: 1.5rem; color: rgba(212,175,55,0.25); line-height: 1; }
   .timeline-text { font-size: 0.9rem; color: var(--mist-dim); line-height: 1.6; }
   .timeline-text strong { color: var(--mist); font-style: italic; }
 
@@ -295,18 +301,18 @@
   }
   .life-card:hover::after { opacity: 1; }
   .life-era {
-    font-family: 'Raleway', sans-serif; font-size: 0.65rem;
+    font-family: var(--font-body); font-weight: 500; font-size: 0.65rem;
     letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold);
     margin-bottom: 0.6rem;
   }
-  .life-title { font-family: 'Cinzel', serif; font-size: 1.15rem; margin-bottom: 0.8rem; color: var(--mist); }
+  .life-title { font-family: var(--font-headline); font-size: 1.15rem; margin-bottom: 0.8rem; color: var(--mist); }
   .life-desc { font-size: 0.88rem; color: var(--mist-dim); line-height: 1.7; }
   .life-icon { font-size: 2.5rem; margin-bottom: 1rem; opacity: 0.8; }
   .life-tag {
     display: inline-block; margin-top: 1rem;
     padding: 0.25rem 0.8rem;
     background: rgba(212,175,55,0.1); border: 1px solid rgba(212,175,55,0.3);
-    border-radius: 20px; font-family: 'Raleway', sans-serif;
+    border-radius: 20px; font-family: var(--font-body); font-weight: 500;
     font-size: 0.65rem; letter-spacing: 0.1em; color: var(--gold);
   }
 
@@ -332,8 +338,8 @@
     transition: color 0.3s;
   }
   .modal-close:hover { color: var(--gold); }
-  .modal-era { font-family: 'Raleway', sans-serif; font-size: 0.65rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.8rem; }
-  .modal-title { font-family: 'Cinzel', serif; font-size: 1.8rem; margin-bottom: 1.5rem; }
+  .modal-era { font-family: var(--font-body); font-weight: 500; font-size: 0.65rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.8rem; }
+  .modal-title { font-family: var(--font-headline); font-size: 1.8rem; margin-bottom: 1.5rem; }
   .modal-body { font-size: 0.95rem; color: var(--mist-dim); line-height: 1.9; }
   .modal-body p { margin-bottom: 1rem; }
 
@@ -350,11 +356,11 @@
   }
   .teaching-item.visible { opacity: 1; transform: none; }
   .teaching-num {
-    font-family: 'Cinzel', serif; font-size: 3rem; font-weight: 800;
+    font-family: var(--font-headline); font-size: 3rem; font-weight: 800;
     color: rgba(212,175,55,0.12); line-height: 1; flex-shrink: 0; min-width: 60px;
   }
   .teaching-quote {
-    font-family: 'Lora', serif; font-style: italic;
+    font-family: var(--font-body); font-style: italic;
     font-size: clamp(1.05rem, 2vw, 1.25rem);
     color: var(--gold-light); line-height: 1.7; margin-bottom: 0.8rem;
   }
@@ -377,7 +383,7 @@
   }
   .debate-head {
     display: flex; align-items: center; gap: 0.8rem;
-    font-family: 'Cinzel', serif; font-size: 1.1rem; margin-bottom: 1.5rem;
+    font-family: var(--font-headline); font-size: 1.1rem; margin-bottom: 1.5rem;
   }
   .debate-head span { font-size: 1.4rem; }
   .debate-card.believe .debate-head { color: #9b7fe8; }
@@ -400,12 +406,12 @@
   .quote-slide.active { display: block; }
   @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
   .big-quote {
-    font-family: 'Lora', serif; font-style: italic;
+    font-family: var(--font-body); font-style: italic;
     font-size: clamp(1.3rem, 3vw, 1.9rem);
     color: var(--mist); line-height: 1.7; max-width: 750px; margin: 0 auto 1.5rem;
   }
   .big-quote-gold { color: var(--gold); }
-  .quote-source { font-family: 'Raleway', sans-serif; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(244,244,244,0.4); }
+  .quote-source { font-family: var(--font-body); font-weight: 500; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(244,244,244,0.4); }
   .quote-dots { display: flex; justify-content: center; gap: 0.6rem; margin-top: 2rem; }
   .qdot {
     width: 6px; height: 6px; border-radius: 50%;
@@ -429,15 +435,15 @@
     border: 2px solid rgba(212,175,55,0.3);
     box-shadow: 0 0 30px rgba(75,46,131,0.4);
   }
-  .author-name { font-family: 'Cinzel', serif; font-size: 1.8rem; margin-bottom: 0.3rem; }
-  .author-title { font-family: 'Raleway', sans-serif; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+  .author-name { font-family: var(--font-headline); font-size: 1.8rem; margin-bottom: 0.3rem; }
+  .author-title { font-family: var(--font-body); font-weight: 500; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
   .author-bio { font-size: 0.95rem; color: var(--mist-dim); line-height: 1.8; margin-bottom: 2rem; }
   .author-links { display: flex; gap: 1rem; flex-wrap: wrap; }
   .author-link {
     padding: 0.6rem 1.4rem;
     border: 1px solid rgba(212,175,55,0.35);
     border-radius: 2px;
-    font-family: 'Raleway', sans-serif; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+    font-family: var(--font-body); font-weight: 500; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
     color: var(--gold); text-decoration: none;
     transition: all 0.3s;
   }
@@ -457,7 +463,7 @@
   .quiz-step { display: none; }
   .quiz-step.active { display: block; animation: fadeUp 0.6s ease; }
   .quiz-q {
-    font-family: 'Cinzel', serif; font-size: 1.2rem;
+    font-family: var(--font-headline); font-size: 1.2rem;
     color: var(--mist); margin-bottom: 2rem; line-height: 1.5;
   }
   .quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
@@ -466,7 +472,7 @@
     background: rgba(75,46,131,0.1);
     border: 1px solid rgba(212,175,55,0.15);
     border-radius: 6px; cursor: pointer;
-    font-family: 'Lora', serif; font-size: 0.9rem;
+    font-family: var(--font-body); font-size: 0.9rem;
     color: var(--mist-dim); transition: all 0.3s;
     text-align: left;
   }
@@ -486,10 +492,10 @@
   .qp-dot.done { background: var(--gold); }
 
   .result-box { text-align: center; }
-  .result-era { font-family: 'Raleway', sans-serif; font-size: 0.7rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.8rem; }
-  .result-title { font-family: 'Cinzel', serif; font-size: 2rem; margin-bottom: 1rem; }
+  .result-era { font-family: var(--font-body); font-weight: 500; font-size: 0.7rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.8rem; }
+  .result-title { font-family: var(--font-headline); font-size: 2rem; margin-bottom: 1rem; }
   .result-icon { font-size: 4rem; margin-bottom: 1rem; }
-  .result-desc { font-family: 'Lora', serif; font-style: italic; font-size: 1rem; color: var(--mist-dim); line-height: 1.8; max-width: 500px; margin: 0 auto 2rem; }
+  .result-desc { font-family: var(--font-body); font-style: italic; font-size: 1rem; color: var(--mist-dim); line-height: 1.8; max-width: 500px; margin: 0 auto 2rem; }
 
   /* ─── MUSIC TOGGLE ─── */
   .music-btn {
@@ -506,7 +512,7 @@
   footer {
     text-align: center; padding: 4rem 2rem;
     border-top: 1px solid rgba(212,175,55,0.1);
-    font-family: 'Raleway', sans-serif; font-size: 0.75rem;
+    font-family: var(--font-body); font-weight: 500; font-size: 0.75rem;
     letter-spacing: 0.1em; color: rgba(244,244,244,0.3);
   }
   footer span { color: var(--gold); }

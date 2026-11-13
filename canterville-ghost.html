@@ -5,17 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Canterville Ghost — My Way</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Patrick+Hand&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,300&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
   :root {
-    --black: #0a0a0a;
-    --white: #f5f2eb;
-    --off-white: #ece9e0;
-    --light-gray: #d4d0c8;
-    --mid-gray: #8a8680;
-    --dark-gray: #2a2724;
-    --ink: #1a1714;
+    --font-headline: 'Caprasimo', Georgia, serif;
+    --font-accent:   'Fraunces', Georgia, serif;
+    --font-body:     'Inter', sans-serif;
+
+    --black: #141414;
+    --white: #DCC9A9;
+    --off-white: #DCC9A9;
+    --light-gray: #4E6851;
+    --mid-gray: #7A7063;
+    --dark-gray: #221D18;
+    --ink: #181512;
+    --blood: #B83A2D;
   }
 
   * {
@@ -31,7 +38,7 @@
   body {
     background-color: var(--black);
     color: var(--ink);
-    font-family: 'Cormorant Garamond', serif;
+    font-family: var(--font-body);
     overflow-x: hidden;
     cursor: default;
   }
@@ -72,7 +79,7 @@
   }
 
   .landing-ghost-text {
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-headline);
     font-size: clamp(5rem, 12vw, 14rem);
     font-weight: 700;
     color: transparent;
@@ -88,7 +95,7 @@
   }
 
   .landing-eyebrow {
-    font-family: 'Patrick Hand', cursive;
+    font-family: var(--font-accent); font-style: italic; font-weight: 300;
     font-size: clamp(0.85rem, 1.5vw, 1.1rem);
     color: var(--mid-gray);
     letter-spacing: 0.25em;
@@ -100,7 +107,7 @@
   }
 
   .landing-title {
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-headline);
     font-size: clamp(2.5rem, 6vw, 7rem);
     font-weight: 700;
     color: var(--white);
@@ -118,7 +125,7 @@
   }
 
   .landing-subtitle {
-    font-family: 'Caveat', cursive;
+    font-family: var(--font-accent); font-style: italic; font-weight: 300;
     font-size: clamp(1.1rem, 2.5vw, 2rem);
     color: var(--mid-gray);
     margin-top: 1.5rem;
@@ -137,7 +144,7 @@
   }
 
   .landing-meta p {
-    font-family: 'Patrick Hand', cursive;
+    font-family: var(--font-accent); font-style: italic; font-weight: 300;
     font-size: 0.9rem;
     color: var(--mid-gray);
     line-height: 1.8;
@@ -156,7 +163,7 @@
   }
 
   .scroll-hint span {
-    font-family: 'Patrick Hand', cursive;
+    font-family: var(--font-accent); font-style: italic; font-weight: 300;
     font-size: 0.8rem;
     color: var(--mid-gray);
     letter-spacing: 0.15em;
@@ -198,7 +205,7 @@
   }
 
   .page-divider .chapter-number {
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-headline);
     font-size: 0.75rem;
     letter-spacing: 0.4em;
     text-transform: uppercase;
@@ -227,7 +234,7 @@
   }
 
   .chapter-num {
-    font-family: 'Patrick Hand', cursive;
+    font-family: var(--font-accent); font-style: italic; font-weight: 300;
     font-size: 0.85rem;
     letter-spacing: 0.3em;
     text-transform: uppercase;
@@ -237,7 +244,7 @@
   }
 
   .chapter-title {
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-headline);
     font-size: clamp(2rem, 4vw, 3.5rem);
     font-weight: 700;
     color: var(--ink);
@@ -251,7 +258,7 @@
   }
 
   .chapter-tagline {
-    font-family: 'Caveat', cursive;
+    font-family: var(--font-accent); font-style: italic; font-weight: 300;
     font-size: clamp(1.1rem, 2vw, 1.6rem);
     color: var(--mid-gray);
     margin-top: 1rem;
@@ -259,7 +266,7 @@
   }
 
   .chapter-body {
-    font-family: 'Caveat', cursive;
+    font-family: var(--font-accent); font-style: italic; font-weight: 300;
     font-size: clamp(1.1rem, 1.8vw, 1.45rem);
     color: var(--dark-gray);
     line-height: 1.85;
@@ -270,7 +277,7 @@
   }
 
   .punch {
-    font-family: 'Patrick Hand', cursive;
+    font-family: var(--font-accent); font-style: italic; font-weight: 300;
     font-size: clamp(0.85rem, 1.3vw, 1.05rem);
     color: var(--mid-gray);
     border-left: 2px solid var(--light-gray);
@@ -355,7 +362,7 @@
     position: absolute;
     top: -1rem;
     right: 6vw;
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-headline);
     font-size: clamp(8rem, 20vw, 22rem);
     font-weight: 700;
     color: transparent;
@@ -532,7 +539,7 @@
   }
 
   .ch7 .end-note p {
-    font-family: 'Caveat', cursive;
+    font-family: var(--font-accent); font-style: italic; font-weight: 300;
     font-size: clamp(1.3rem, 2.5vw, 2rem);
     color: var(--mid-gray);
     max-width: 600px;
@@ -541,7 +548,7 @@
 
   .ch7 .end-note .final-sign {
     margin-top: 2rem;
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-headline);
     font-style: italic;
     font-size: 1.1rem;
     color: rgba(245,242,235,0.2);
@@ -552,7 +559,7 @@
     background-color: var(--off-white);
     border: 1px solid var(--light-gray);
     padding: 1.4rem 1.6rem;
-    font-family: 'Caveat', cursive;
+    font-family: var(--font-accent); font-style: italic; font-weight: 300;
     font-size: clamp(1rem, 1.5vw, 1.25rem);
     color: var(--dark-gray);
     line-height: 1.7;
@@ -629,14 +636,14 @@
   }
 
   .footer p {
-    font-family: 'Patrick Hand', cursive;
+    font-family: var(--font-accent); font-style: italic; font-weight: 300;
     font-size: 0.85rem;
     color: var(--mid-gray);
     letter-spacing: 0.1em;
   }
 
   .footer .brand {
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-headline);
     font-style: italic;
     color: rgba(245,242,235,0.3);
     font-size: 1.1rem;
@@ -676,7 +683,7 @@
     right: 16px;
     top: 50%;
     transform: translateY(-50%);
-    font-family: 'Patrick Hand', cursive;
+    font-family: var(--font-accent); font-style: italic; font-weight: 300;
     font-size: 0.7rem;
     color: var(--mid-gray);
     white-space: nowrap;
@@ -948,11 +955,11 @@
     </div>
 
     <div class="chapter-right reveal" style="padding-top: 4rem;">
-      <p style="font-family: 'Caveat', cursive; font-size: clamp(1rem, 1.5vw, 1.3rem); color: var(--mid-gray); line-height: 1.9;">
+      <p style="font-family: var(--font-accent); font-style: italic; font-weight: 300; font-size: clamp(1rem, 1.5vw, 1.3rem); color: var(--mid-gray); line-height: 1.9;">
         Meanwhile, what is Virginia doing in there. Where is "in there." What happens in the place where ghosts go to rest. Wilde doesn't tell you. You just feel the weight of it. The in-between. The place where something very old finally gets to let go.
       </p>
 
-      <p style="font-family: 'Caveat', cursive; font-size: clamp(1rem, 1.5vw, 1.3rem); color: var(--mid-gray); line-height: 1.9; margin-top: 1.5rem;">
+      <p style="font-family: var(--font-accent); font-style: italic; font-weight: 300; font-size: clamp(1rem, 1.5vw, 1.3rem); color: var(--mid-gray); line-height: 1.9; margin-top: 1.5rem;">
         Whatever she did in there — she cried for him. Real tears. For a ghost who murdered his own wife three hundred years ago. For a man who suffered too, in his own cruel way. She held that without flinching.
       </p>
     </div>

@@ -44,21 +44,25 @@
   --measure-subtitle: 38rem;
 
   /* =========================================================================
-     COLOUR PALETTE (PRESERVED - UNCHANGED)
-     High contrast against the warm cream background
+     COLOUR PALETTE (AMERICAN RETRO PALETTE: #DCC9A9, #B83A2D, #4E6851, #141414)
      ========================================================================= */
-  --page-bg:          #1C1917; /* Dark surrounding wall frame */
-  --canvas-bg:        #FAF8F5; /* Warm light cream main surface */
-  --canvas-surface:   #F3EFE8; /* Secondary surface */
-  --canvas-card:      #FFFFFF; /* White card surface */
-  --ink-primary:      #171513; /* Primary deep reading ink (high contrast) */
-  --ink-secondary:    #38332E; /* Secondary text with strong legibility */
-  --ink-muted:        #686057; /* Labels and metadata */
-  --shelf-line:       #D3CBC0; /* Thin minimal shelf line */
-  --accent-rust:      #C8523A; /* Terracotta / rust */
-  --accent-navy:      #21324B; /* Classical navy */
-  --border-quiet:     rgba(23, 21, 19, 0.08);
-  --border-subtle:    rgba(23, 21, 19, 0.15);
+  --color-cream:      #DCC9A9; /* Warm vintage parchment reading surface */
+  --color-brick:      #B83A2D; /* Retro terracotta crimson accent */
+  --color-forest:     #4E6851; /* Deep vintage forest green */
+  --color-dark:       #141414; /* Deep archival charcoal base */
+
+  --page-bg:          #141414; /* Dark surrounding wall frame */
+  --canvas-bg:        #DCC9A9; /* Warm vintage cream main surface */
+  --canvas-surface:   #D0BD9C; /* Secondary surface */
+  --canvas-card:      #EADBC5; /* Card surface */
+  --ink-primary:      #181512; /* Primary deep reading ink (high contrast) */
+  --ink-secondary:    #3B342C; /* Secondary text with strong legibility */
+  --ink-muted:        #6E6356; /* Labels and metadata */
+  --shelf-line:       #4E6851; /* Shelf line in deep vintage forest */
+  --accent-rust:      #B83A2D; /* Terracotta / crimson accent */
+  --accent-navy:      #4E6851; /* Vintage forest green */
+  --border-quiet:     rgba(24, 21, 18, 0.1);
+  --border-subtle:    rgba(24, 21, 18, 0.18);
 
   --ease-natural: cubic-bezier(0.2, 0.8, 0.2, 1);
 }
@@ -176,7 +180,7 @@ a {
   width: 94%;
   max-width: 1340px;
   margin: 3.5rem auto 5rem;
-  background-color: rgba(250, 248, 245, 0.94); /* Warm cream at 94% opacity */
+  background-color: rgba(220, 201, 169, 0.94); /* Warm vintage cream (#DCC9A9) at 94% opacity */
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
   box-shadow: 0 25px 70px rgba(0, 0, 0, 0.45);

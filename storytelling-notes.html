@@ -4,26 +4,32 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Art of Storytelling — Atif Khan</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,300&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --ink: #1a1208;
-    --parchment: #f5f0e8;
-    --cream: #faf7f2;
-    --gold: #c9a84c;
-    --gold-light: #e8d5a3;
-    --rust: #8b3a2a;
-    --forest: #2d4a3e;
-    --accent: #5c3d2e;
-    --muted: #7a6f5e;
-    --border: rgba(201,168,76,0.3);
+    --font-headline: 'Caprasimo', Georgia, serif;
+    --font-accent:   'Fraunces', Georgia, serif;
+    --font-body:     'Inter', sans-serif;
+
+    --ink: #141414;
+    --parchment: #DCC9A9;
+    --cream: #DCC9A9;
+    --gold: #4E6851;
+    --gold-light: #4E6851;
+    --rust: #B83A2D;
+    --forest: #4E6851;
+    --accent: #B83A2D;
+    --muted: #7A7063;
+    --border: rgba(78, 104, 81, 0.3);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
     background: var(--ink);
-    font-family: 'DM Sans', sans-serif;
+    font-family: var(--font-body);
     color: var(--ink);
     overflow-x: hidden;
   }
@@ -54,7 +60,7 @@
   }
 
   .hero-eyebrow {
-    font-family: 'Space Mono', monospace;
+    font-family: var(--font-body); font-weight: 500;
     font-size: clamp(0.55rem, 1.5vw, 0.7rem);
     letter-spacing: 0.3em;
     text-transform: uppercase;
@@ -65,7 +71,7 @@
   }
 
   .hero h1 {
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-headline);
     font-size: clamp(2.8rem, 10vw, 7rem);
     font-weight: 900;
     color: var(--parchment);
@@ -103,7 +109,7 @@
     bottom: 2rem;
     left: 50%;
     transform: translateX(-50%);
-    font-family: 'Space Mono', monospace;
+    font-family: var(--font-body); font-weight: 500;
     font-size: 0.65rem;
     letter-spacing: 0.2em;
     color: rgba(201,168,76,0.45);
@@ -152,7 +158,7 @@
   .nav-tabs::-webkit-scrollbar { display: none; }
 
   .tab-btn {
-    font-family: 'Space Mono', monospace;
+    font-family: var(--font-body); font-weight: 500;
     font-size: clamp(0.55rem, 1.5vw, 0.65rem);
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -180,7 +186,7 @@
   }
 
   .section-label {
-    font-family: 'Space Mono', monospace;
+    font-family: var(--font-body); font-weight: 500;
     font-size: clamp(0.55rem, 1.5vw, 0.65rem);
     letter-spacing: 0.3em;
     text-transform: uppercase;
@@ -189,7 +195,7 @@
   }
 
   .section-title {
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-headline);
     font-size: clamp(1.8rem, 6vw, 3.2rem);
     font-weight: 700;
     color: var(--ink);
@@ -244,7 +250,7 @@
     flex-shrink: 0;
   }
   .card h3 {
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-headline);
     font-size: clamp(0.95rem, 2.2vw, 1.05rem);
     font-weight: 700;
     color: var(--ink);
@@ -277,14 +283,14 @@
     position: absolute;
     top: -20px;
     left: 20px;
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-headline);
     font-size: clamp(6rem, 15vw, 10rem);
     color: rgba(201,168,76,0.08);
     line-height: 1;
     pointer-events: none;
   }
   .quote-block blockquote {
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-headline);
     font-size: clamp(1.1rem, 3.5vw, 1.9rem);
     font-style: italic;
     color: var(--gold-light);
@@ -295,7 +301,7 @@
   .quote-block cite {
     display: block;
     margin-top: 1rem;
-    font-family: 'Space Mono', monospace;
+    font-family: var(--font-body); font-weight: 500;
     font-size: clamp(0.55rem, 1.5vw, 0.65rem);
     letter-spacing: 0.2em;
     color: rgba(201,168,76,0.5);
@@ -339,7 +345,7 @@
     background: var(--cream);
   }
   .tl-step {
-    font-family: 'Space Mono', monospace;
+    font-family: var(--font-body); font-weight: 500;
     font-size: clamp(0.55rem, 1.4vw, 0.6rem);
     letter-spacing: 0.2em;
     text-transform: uppercase;
@@ -347,7 +353,7 @@
     margin-bottom: 0.2rem;
   }
   .tl-item h4 {
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-headline);
     font-size: clamp(1rem, 2.5vw, 1.15rem);
     font-weight: 700;
     color: var(--ink);
@@ -376,7 +382,7 @@
   .premise-box.dark { background: var(--ink); color: var(--parchment); }
   .premise-box.light { background: var(--parchment); }
   .premise-box h4 {
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-headline);
     font-size: clamp(0.9rem, 2.2vw, 1rem);
     font-weight: 700;
     margin-bottom: 0.6rem;
@@ -398,7 +404,7 @@
     margin-top: 1rem;
   }
   .tag {
-    font-family: 'Space Mono', monospace;
+    font-family: var(--font-body); font-weight: 500;
     font-size: clamp(0.58rem, 1.4vw, 0.65rem);
     letter-spacing: 0.08em;
     padding: 0.35rem 0.75rem;
@@ -425,7 +431,7 @@
     font-size: clamp(0.78rem, 1.8vw, 0.88rem);
   }
   .char-table th {
-    font-family: 'Space Mono', monospace;
+    font-family: var(--font-body); font-weight: 500;
     font-size: clamp(0.55rem, 1.4vw, 0.62rem);
     letter-spacing: 0.15em;
     text-transform: uppercase;
@@ -465,7 +471,7 @@
     margin-bottom: 0.5rem;
   }
   .conflict-pill h4 {
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-headline);
     font-size: clamp(0.85rem, 2vw, 0.95rem);
     font-weight: 700;
     color: var(--ink);
@@ -479,7 +485,7 @@
 
   /* ── SECTION HEADINGS ── */
   .subsection-title {
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-headline);
     font-size: clamp(1.1rem, 2.8vw, 1.3rem);
     color: var(--ink);
     margin-bottom: clamp(0.8rem, 2vw, 1rem);
@@ -492,7 +498,7 @@
     color: rgba(245,240,232,0.35);
     text-align: center;
     padding: clamp(1.8rem, 5vw, 3rem) clamp(1rem, 4vw, 2rem);
-    font-family: 'Space Mono', monospace;
+    font-family: var(--font-body); font-weight: 500;
     font-size: clamp(0.58rem, 1.5vw, 0.65rem);
     letter-spacing: 0.15em;
     line-height: 1.8;
@@ -849,7 +855,7 @@
         padding: clamp(14px,3vw,18px) clamp(28px,5vw,44px);
         background: var(--gold);
         color: var(--ink);
-        font-family: 'Space Mono', monospace;
+        font-family: var(--font-body); font-weight: 500;
         font-size: clamp(0.65rem,1.6vw,0.75rem);
         letter-spacing: 0.15em;
         text-transform: uppercase;
