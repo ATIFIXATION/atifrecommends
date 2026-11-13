@@ -1,5 +1,5 @@
 /* ==========================================================================
-   ATIF RECOMMENDS — V2 BOOKSHELF ENGINE (REFERENCE: JZA "THE PERSONAL CURATION")
+   ATIF RECOMMENDS — BOOKSHELF ENGINE (3-FONT SYSTEM)
    ========================================================================== */
 
 .bookshelf-stage-wrapper {
@@ -78,7 +78,7 @@
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-/* Hover & Focus State: Subtle lift, softened shadow, NO glow */
+/* Hover & Focus State */
 .spine-book:hover,
 .spine-book:focus-visible {
   transform: translateY(-10px) !important;
@@ -133,7 +133,7 @@
 }
 
 /* ==========================================================================
-   INDIVIDUAL SPINES (Varying colours, widths, heights, types from real books)
+   INDIVIDUAL SPINES
    ========================================================================== */
 
 /* 1. Oscar Wilde — The Canterville Ghost (Dusty Rose, Leaning) */
@@ -146,16 +146,17 @@
 }
 
 .spine-canterville .spine-title {
-  font-family: var(--font-serif);
+  font-family: var(--font-accent);
   font-style: italic;
-  font-size: 0.88rem;
-  font-weight: 500;
+  font-weight: 300;
+  font-size: 0.95rem;
 }
 
 .spine-canterville .spine-author {
-  font-size: 0.55rem;
+  font-family: var(--font-body);
+  font-size: 0.6rem;
   letter-spacing: 0.05em;
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
 /* 2. Art of Storytelling — Atif Khan (Muted Olive / Forest Green) */
@@ -167,15 +168,17 @@
 }
 
 .spine-storytelling .spine-title {
-  font-family: var(--font-reading);
-  font-size: 0.82rem;
-  font-weight: 400;
+  font-family: var(--font-accent);
+  font-weight: 500;
+  font-style: normal;
+  font-size: 0.88rem;
 }
 
 .spine-storytelling .spine-author {
-  font-size: 0.52rem;
+  font-family: var(--font-body);
+  font-size: 0.6rem;
   letter-spacing: 0.04em;
-  opacity: 0.75;
+  opacity: 0.8;
 }
 
 /* 3. Never Split the Difference — Chris Voss (Bold Orange, Large Sans Block) */
@@ -187,16 +190,16 @@
 }
 
 .spine-neversplit .spine-title {
-  font-family: var(--font-display);
-  font-size: 1.15rem;
+  font-family: var(--font-body);
+  font-size: 1.05rem;
   font-weight: 700;
   letter-spacing: 0.03em;
   text-transform: uppercase;
 }
 
 .spine-neversplit .spine-author {
-  font-family: var(--font-sans);
-  font-size: 0.6rem;
+  font-family: var(--font-body);
+  font-size: 0.62rem;
   font-weight: 600;
   padding: 2px 4px;
   background: #171513;
@@ -216,8 +219,8 @@
   width: 100%;
   padding: 5px 1px;
   background: #C82D30;
-  font-family: var(--font-sans);
-  font-size: 0.5rem;
+  font-family: var(--font-body);
+  font-size: 0.52rem;
   font-weight: 700;
   letter-spacing: 0.02em;
   color: #FFF;
@@ -225,8 +228,8 @@
 }
 
 .spine-animalfarm .spine-title {
-  font-family: var(--font-sans);
-  font-size: 0.78rem;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -243,19 +246,21 @@
 }
 
 .spine-single .spine-tag {
+  font-family: var(--font-body);
   color: #D32F2F;
-  font-size: 0.55rem;
+  font-size: 0.58rem;
   font-weight: 600;
 }
 
 .spine-single .spine-title {
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
   font-size: 0.8rem;
   font-weight: 500;
   letter-spacing: 0.02em;
 }
 
 .spine-single .spine-author {
+  font-family: var(--font-body);
   font-size: 0.55rem;
   color: #7D756C;
 }
@@ -322,24 +327,26 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: contrast(120%) grayscale(30%);
 }
 
+/* Featured Cover Title: Fraunces 500, not italic */
 .featured-cover-title {
-  font-family: var(--font-headline);
-  font-size: 0.92rem;
+  font-family: var(--font-accent);
+  font-size: 0.95rem;
   font-weight: 500;
+  font-style: normal;
   color: #FAF8F5;
   text-align: center;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
   margin-top: 10px;
   line-height: 1.25;
 }
 
 .featured-cover-author {
-  font-family: var(--font-sans);
-  font-size: 0.62rem;
-  color: rgba(250, 248, 245, 0.65);
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 400;
+  color: rgba(250, 248, 245, 0.75);
   letter-spacing: 0.05em;
   text-align: center;
 }
@@ -358,9 +365,9 @@
 }
 
 .spine-crime .spine-title {
-  font-family: var(--font-serif);
-  font-size: 0.85rem;
-  font-weight: 600;
+  font-family: var(--font-headline);
+  font-size: 0.82rem;
+  font-weight: 400;
   letter-spacing: 0.06em;
 }
 
@@ -373,14 +380,16 @@
 }
 
 .spine-screenplay .spine-title {
-  font-family: var(--font-reading);
-  font-size: 0.82rem;
-  font-weight: 400;
+  font-family: var(--font-accent);
+  font-size: 0.85rem;
+  font-weight: 500;
+  font-style: normal;
 }
 
 .spine-screenplay .spine-author {
-  font-size: 0.52rem;
-  opacity: 0.8;
+  font-family: var(--font-body);
+  font-size: 0.58rem;
+  opacity: 0.85;
 }
 
 /* 9. Cinematic Architecture — Atif Khan (Massive White Monograph, like S,M,L,XL) */
@@ -393,18 +402,19 @@
 }
 
 .spine-cinematic .spine-top-meta {
-  font-size: 0.52rem;
+  font-family: var(--font-body);
+  font-size: 0.55rem;
   line-height: 1.2;
   text-align: center;
   color: #6A6258;
 }
 
 .spine-cinematic .spine-title {
-  font-family: var(--font-display);
-  font-size: 1.7rem;
-  font-weight: 900;
-  letter-spacing: -0.02em;
-  line-height: 0.9;
+  font-family: var(--font-headline);
+  font-size: 1.6rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 0.95;
 }
 
 /* 10. Many Lives, Many Masters — Brian Weiss (Deep Midnight Navy) */
@@ -417,9 +427,10 @@
 }
 
 .spine-souls .spine-title {
-  font-family: var(--font-serif);
-  font-size: 0.75rem;
+  font-family: var(--font-accent);
+  font-size: 0.78rem;
   font-weight: 500;
+  font-style: normal;
 }
 
 /* 11. The Alchemist — Paulo Coelho (Warm Mustard Ochre) */
@@ -433,15 +444,16 @@
 .spine-alchemist .spine-title {
   font-family: var(--font-headline);
   font-size: 0.95rem;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .spine-alchemist .spine-author {
-  font-size: 0.55rem;
+  font-family: var(--font-body);
+  font-size: 0.6rem;
   font-weight: 500;
 }
 
-/* 12. Dostoevsky Russian Noir (Deep Chocolate Brown with Boxed Border) */
+/* 12. Dostoevsky Russian Classics (Deep Chocolate Brown with Boxed Border) */
 .spine-russian {
   width: 44px;
   height: 310px;
@@ -460,8 +472,9 @@
 }
 
 .spine-russian .spine-title {
-  font-family: var(--font-serif);
+  font-family: var(--font-headline);
   font-size: 0.82rem;
+  font-weight: 400;
   letter-spacing: 0.05em;
   writing-mode: vertical-rl;
   transform: rotate(180deg);
@@ -474,6 +487,12 @@
   height: 340px;
   background: #E8572A;
   color: #FFF;
+}
+
+.spine-endorange .text-vertical-rl {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 600;
 }
 
 /* Responsive adjustment for Shelf */
