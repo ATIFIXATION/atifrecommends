@@ -1,0 +1,507 @@
+/* ==========================================================================
+   ATIF RECOMMENDS — EDITORIAL LIBRARY, ARCHIVE & PORTFOLIO LAYOUTS
+   ========================================================================== */
+
+/* Main Archive Section Container */
+.editorial-archive-section {
+  background: var(--espresso);
+  position: relative;
+  padding: 7rem 2rem;
+  z-index: 5;
+}
+
+.editorial-container {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+/* Editorial Section Header (Reference 03 Style) */
+.editorial-section-header {
+  margin-bottom: 4rem;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 2rem;
+  border-bottom: 1px solid var(--border-dark);
+  padding-bottom: 2.5rem;
+}
+
+.editorial-header-left {
+  max-width: 700px;
+}
+
+.section-part-tag {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 4px;
+  color: var(--antique-brass);
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+  display: block;
+}
+
+.section-main-title {
+  font-family: var(--font-title);
+  font-size: clamp(2.5rem, 5vw, 4.2rem);
+  font-weight: 400;
+  line-height: 1.05;
+  color: var(--warm-paper);
+  letter-spacing: -0.01em;
+}
+
+.section-main-title em {
+  font-style: italic;
+  color: var(--antique-brass);
+}
+
+.section-intro-text {
+  font-family: var(--font-editorial);
+  font-size: 1.15rem;
+  color: var(--muted-grey);
+  margin-top: 1rem;
+  line-height: 1.7;
+}
+
+/* Category Filter Tabs */
+.archive-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.filter-pill {
+  background: transparent;
+  border: 1px solid rgba(241, 235, 221, 0.16);
+  color: var(--muted-grey);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.filter-pill:hover,
+.filter-pill.active {
+  background: var(--warm-paper);
+  border-color: var(--warm-paper);
+  color: var(--ink-black);
+}
+
+/* ==========================================================================
+   ASYMMETRICAL EDITORIAL BOOK GRID (SECTION 06)
+   ========================================================================== */
+.editorial-books-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 2.5rem 2rem;
+  align-items: stretch;
+}
+
+.editorial-card {
+  background: #1e1816;
+  border: 1px solid rgba(241, 235, 221, 0.08);
+  border-radius: 3px;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.4s var(--ease-cinematic), border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.editorial-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(180, 154, 105, 0.35);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+}
+
+/* Asymmetrical Spans */
+.span-4 { grid-column: span 4; }
+.span-6 { grid-column: span 6; }
+.span-8 { grid-column: span 8; }
+.span-12 { grid-column: span 12; }
+
+/* Editorial Card Elements */
+.card-top-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--muted-grey);
+  margin-bottom: 2rem;
+}
+
+.card-numeral {
+  color: var(--antique-brass);
+}
+
+.card-title-group h3 {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 500;
+  line-height: 1.15;
+  color: var(--warm-paper);
+  margin-bottom: 0.5rem;
+  transition: color var(--transition-fast);
+}
+
+.editorial-card:hover .card-title-group h3 {
+  color: var(--antique-brass);
+}
+
+.card-author {
+  font-family: var(--font-classic);
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted-grey);
+  margin-bottom: 1.5rem;
+  display: block;
+}
+
+.card-note {
+  font-family: var(--font-editorial);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: rgba(241, 235, 221, 0.72);
+  margin-bottom: 2rem;
+  flex-grow: 1;
+}
+
+.card-quote-snip {
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--antique-brass);
+  border-left: 2px solid var(--antique-brass);
+  padding-left: 1rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 2rem;
+}
+
+.card-tag-pill {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  background: rgba(241, 235, 221, 0.05);
+  border: 1px solid rgba(241, 235, 221, 0.1);
+  color: var(--muted-grey);
+  border-radius: 2px;
+}
+
+.card-footer-cta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--antique-brass);
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(241, 235, 221, 0.08);
+  transition: padding var(--transition-fast);
+}
+
+.card-footer-cta i {
+  transition: transform var(--transition-fast);
+}
+
+.editorial-card:hover .card-footer-cta i {
+  transform: translateX(6px);
+}
+
+/* ==========================================================================
+   PERSONAL PORTFOLIO SECTION (SECTION 09)
+   ========================================================================== */
+.portfolio-feature-section {
+  background: #1c1514;
+  border-top: 1px solid var(--border-dark);
+  border-bottom: 1px solid var(--border-dark);
+  padding: 8rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.portfolio-feature-card {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: var(--espresso);
+  border: 1px solid rgba(180, 154, 105, 0.3);
+  border-radius: 4px;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+}
+
+.portfolio-text-pane {
+  padding: 4.5rem 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.portfolio-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--antique-brass);
+  margin-bottom: 1.2rem;
+}
+
+.portfolio-name {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 6vw, 4.5rem);
+  font-weight: 300;
+  line-height: 1;
+  color: var(--warm-paper);
+  margin-bottom: 1rem;
+}
+
+.portfolio-name em {
+  font-style: italic;
+  color: var(--antique-brass);
+}
+
+.portfolio-statement {
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-size: 1.25rem;
+  line-height: 1.7;
+  color: var(--warm-paper);
+  margin-bottom: 1.8rem;
+}
+
+.portfolio-description {
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  color: var(--muted-grey);
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+}
+
+.portfolio-launch-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--antique-brass);
+  color: var(--ink-black);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  padding: 16px 36px;
+  border-radius: 2px;
+  font-weight: 500;
+  transition: all var(--transition-fast);
+  align-self: flex-start;
+}
+
+.portfolio-launch-btn:hover {
+  background: var(--warm-paper);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(180, 154, 105, 0.3);
+}
+
+.portfolio-visual-pane {
+  background: radial-gradient(circle at 60% 40%, rgba(180, 154, 105, 0.12), transparent 70%), #140f0e;
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-left: 1px solid rgba(241, 235, 221, 0.08);
+}
+
+.portfolio-mockup-frame {
+  width: 100%;
+  max-width: 380px;
+  background: #0f0c0b;
+  border: 1px solid rgba(241, 235, 221, 0.15);
+  border-radius: 6px;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.7);
+  overflow: hidden;
+  transform: perspective(1000px) rotateY(-8deg) rotateX(4deg);
+  transition: transform 0.6s var(--ease-cinematic);
+}
+
+.portfolio-mockup-frame:hover {
+  transform: perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1.02);
+}
+
+.mockup-header-bar {
+  background: #1b1614;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mockup-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.mockup-body {
+  padding: 2.5rem 1.8rem;
+  text-align: center;
+}
+
+.mockup-logo {
+  font-family: var(--font-classic);
+  font-size: 1.4rem;
+  letter-spacing: 3px;
+  color: var(--antique-brass);
+  margin-bottom: 0.6rem;
+}
+
+.mockup-sub {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 2px;
+  color: var(--muted-grey);
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+
+.mockup-preview-pills {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.mockup-pill {
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(241, 235, 221, 0.6);
+  border-radius: 2px;
+}
+
+/* ==========================================================================
+   ABOUT & CURATOR STATEMENT SECTION (SECTION 10)
+   ========================================================================== */
+.curator-statement-section {
+  padding: 8rem 2rem;
+  background: var(--warm-paper);
+  color: var(--ink-black);
+  position: relative;
+}
+
+.curator-statement-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.statement-tag {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--burgundy);
+  margin-bottom: 1.5rem;
+  display: block;
+}
+
+.statement-quote {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.2vw, 3.4rem);
+  font-weight: 400;
+  line-height: 1.25;
+  color: var(--ink-black);
+  margin-bottom: 2rem;
+}
+
+.statement-quote em {
+  font-style: italic;
+  color: var(--burgundy);
+}
+
+.statement-prose {
+  font-family: var(--font-editorial);
+  font-size: 1.2rem;
+  line-height: 1.85;
+  color: #3f3935;
+  max-width: 720px;
+  margin: 0 auto 3rem;
+}
+
+.curator-signature-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.signature-name {
+  font-family: var(--font-classic);
+  font-size: 1rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--ink-black);
+}
+
+.signature-role {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  color: var(--muted-grey);
+  text-transform: uppercase;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .editorial-books-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .span-4, .span-6, .span-8, .span-12 {
+    grid-column: span 1;
+  }
+
+  .portfolio-feature-card {
+    grid-template-columns: 1fr;
+  }
+
+  .portfolio-text-pane {
+    padding: 3rem 2rem;
+  }
+
+  .portfolio-visual-pane {
+    padding: 3rem 2rem;
+    border-left: none;
+    border-top: 1px solid rgba(241, 235, 221, 0.08);
+  }
+}

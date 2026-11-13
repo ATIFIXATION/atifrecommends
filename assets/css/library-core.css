@@ -1,0 +1,408 @@
+/* ==========================================================================
+   ATIF RECOMMENDS — DIGITAL LITERARY LIBRARY CORE DESIGN SYSTEM
+   ========================================================================== */
+
+/* Google Fonts Import: Using User's Established Typography System */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Cinzel:wght@400;600;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400;1,600&family=Lora:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500&family=Space+Grotesk:wght@300;400;500&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Bebas+Neue&display=swap');
+
+/* Bootstrap Icons */
+@import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css');
+
+:root {
+  /* Global Brand Palette (Section 03 Tokens) */
+  --warm-paper:    #F1EBDD;
+  --ivory:         #E8DFCE;
+  --espresso:      #29211E;
+  --walnut:        #382A25;
+  --deep-navy:     #252F49;
+  --antique-brass: #B49A69;
+  --burgundy:      #673B40;
+  --ink-black:     #171513;
+  --muted-grey:    #8C8277;
+  
+  /* Semantic Tokens */
+  --bg-dark:       var(--espresso);
+  --bg-shelf:      var(--walnut);
+  --bg-paper:      var(--warm-paper);
+  --text-dark:     var(--ink-black);
+  --text-light:    var(--warm-paper);
+  --text-muted:    var(--muted-grey);
+  --accent-gold:   var(--antique-brass);
+  --accent-wine:   var(--burgundy);
+  --border-subtle: rgba(180, 154, 105, 0.2);
+  --border-light:  rgba(23, 21, 19, 0.1);
+  --border-dark:   rgba(241, 235, 221, 0.12);
+
+  /* Typography Stacks */
+  --font-display:   'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  --font-editorial: 'Cormorant Garamond', 'Crimson Text', 'Lora', Georgia, serif;
+  --font-title:     'Playfair Display', 'Cormorant Garamond', serif;
+  --font-classic:   'Cinzel', 'Playfair Display', serif;
+  --font-sans:      'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-modern:    'Outfit', 'Inter', sans-serif;
+  --font-mono:      'Space Mono', 'DM Mono', monospace;
+  --font-bebas:     'Bebas Neue', sans-serif;
+
+  /* Transitions */
+  --ease-cinematic: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: 0.25s var(--ease-cinematic);
+  --transition-med:  0.45s var(--ease-cinematic);
+  --transition-slow: 0.8s var(--ease-cinematic);
+}
+
+/* Base Reset */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  background-color: var(--espresso);
+  color: var(--text-light);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  line-height: 1.7;
+  background-color: var(--espresso);
+  color: var(--text-light);
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Archival Film Grain Texture */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.038'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Selection */
+::selection {
+  background: var(--antique-brass);
+  color: var(--ink-black);
+}
+
+/* Links */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+/* ==========================================================================
+   NAVIGATION — MINIMAL EDITORIAL (SECTION 05-A)
+   ========================================================================== */
+.site-nav {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 1.25rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(41, 33, 30, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border-dark);
+  transition: all var(--transition-fast);
+}
+
+.site-nav.scrolled {
+  padding: 0.9rem 3rem;
+  background: rgba(41, 33, 30, 0.96);
+  border-bottom-color: rgba(180, 154, 105, 0.25);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.nav-brand-group {
+  display: flex;
+  align-items: baseline;
+  gap: 0.85rem;
+}
+
+.nav-logo-mark {
+  font-family: var(--font-classic);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  color: var(--antique-brass);
+  text-transform: uppercase;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.nav-brand-title {
+  font-family: var(--font-classic);
+  font-size: 0.82rem;
+  letter-spacing: 4px;
+  color: var(--warm-paper);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.nav-curator-tag {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 1.5px;
+  color: var(--muted-grey);
+  text-transform: uppercase;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2.2rem;
+  list-style: none;
+}
+
+.nav-link {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted-grey);
+  position: relative;
+  padding: 0.3rem 0;
+  transition: color var(--transition-fast);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--antique-brass);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--transition-fast);
+}
+
+.nav-link:hover {
+  color: var(--warm-paper);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.nav-link.active {
+  color: var(--warm-paper);
+}
+
+/* Portfolio Link in Nav with subtle badge */
+.nav-link-portfolio {
+  color: var(--antique-brass);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid rgba(180, 154, 105, 0.35);
+  border-radius: 2px;
+  transition: all var(--transition-fast);
+}
+
+.nav-link-portfolio:hover {
+  background: rgba(180, 154, 105, 0.12);
+  border-color: var(--antique-brass);
+  color: var(--warm-paper);
+}
+
+/* Mobile Nav Toggle */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--warm-paper);
+  font-size: 1.4rem;
+  cursor: pointer;
+  padding: 0.4rem;
+}
+
+/* ==========================================================================
+   SHARED FOOTER & ARCHIVE SIGNATURE
+   ========================================================================== */
+.site-footer {
+  background: var(--espresso);
+  border-top: 1px solid var(--border-dark);
+  padding: 5rem 3rem 3.5rem;
+  position: relative;
+  z-index: 10;
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 3.5rem;
+  padding-bottom: 3.5rem;
+  border-bottom: 1px solid rgba(241, 235, 221, 0.08);
+}
+
+.footer-brand-title {
+  font-family: var(--font-classic);
+  font-size: 1.35rem;
+  letter-spacing: 4px;
+  color: var(--warm-paper);
+  margin-bottom: 0.8rem;
+  text-transform: uppercase;
+}
+
+.footer-bio {
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--muted-grey);
+  max-width: 480px;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+
+.footer-col-title {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--antique-brass);
+  margin-bottom: 1.2rem;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.footer-links a {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 1.5px;
+  color: var(--muted-grey);
+  transition: color var(--transition-fast);
+}
+
+.footer-links a:hover {
+  color: var(--warm-paper);
+}
+
+.footer-bottom {
+  max-width: 1200px;
+  margin: 2.5rem auto 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  color: rgba(241, 235, 221, 0.35);
+  text-transform: uppercase;
+}
+
+/* ==========================================================================
+   UNIVERSAL BOOK PAGE TOP BAR (FOR ALL BOOK PAGES)
+   ========================================================================== */
+.book-return-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10000;
+  padding: 0.85rem 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(15, 13, 11, 0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.book-return-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--warm-paper);
+  transition: all var(--transition-fast);
+}
+
+.book-return-link:hover {
+  color: var(--antique-brass);
+  transform: translateX(-4px);
+}
+
+.book-reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background: var(--antique-brass);
+  z-index: 10001;
+  transition: width 0.1s ease-out;
+}
+
+/* ==========================================================================
+   RESPONSIVE NAVIGATION
+   ========================================================================== */
+@media (max-width: 900px) {
+  .site-nav {
+    padding: 1.1rem 1.5rem;
+  }
+  
+  .nav-links {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background: rgba(41, 33, 30, 0.98);
+    backdrop-filter: blur(16px);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2rem 2rem 3rem;
+    gap: 1.5rem;
+    border-bottom: 1px solid var(--border-dark);
+    display: none;
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-toggle {
+    display: block;
+  }
+
+  .footer-inner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+}

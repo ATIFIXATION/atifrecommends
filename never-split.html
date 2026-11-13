@@ -550,6 +550,15 @@
 
 <body>
 
+<!-- READING PROGRESS -->
+<div id="readProgress" style="position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg, #b8965a, #8b2318);z-index:99999;width:0%;transition:width 0.1s linear;"></div>
+
+<!-- TOP RETURN BAR -->
+<div style="position:fixed;top:0;left:0;right:0;z-index:9999;padding:12px 36px;display:flex;justify-content:space-between;align-items:center;background:rgba(13,12,11,0.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(184,150,90,0.2);font-family:'Space Grotesk',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;">
+  <a href="index.html#archive" style="color:#b8965a;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:transform 0.2s;">&larr; The Library / Atif Recommends</a>
+  <span style="color:#9a9085;">Chris Voss &middot; Tactical Empathy</span>
+</div>
+
 <!-- ─── HERO ─── -->
 <section class="hero">
   <div class="hero-bg"></div>
@@ -1027,6 +1036,15 @@
   // Stagger chapter blocks
   document.querySelectorAll('.chapter-block').forEach((el, i) => {
     el.style.transitionDelay = '0.1s';
+  });
+
+  // Reading progress
+  window.addEventListener('scroll', () => {
+    const winScroll = document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    const bar = document.getElementById('readProgress');
+    if (bar) bar.style.width = scrolled + '%';
   });
 </script>
 

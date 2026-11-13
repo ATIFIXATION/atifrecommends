@@ -1,0 +1,765 @@
+/* ==========================================================================
+   ATIF RECOMMENDS — 3D INTERACTIVE BOOKSHELF & ARCHIVE ENGINE
+   ========================================================================== */
+
+/* Hero Container */
+.library-hero-section {
+  position: relative;
+  background-color: var(--espresso);
+  padding: 5rem 1.5rem 3rem;
+  overflow: hidden;
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Reference 01 Warm Paper Editorial Floating Panel */
+.bookshelf-editorial-stage {
+  width: 100%;
+  max-width: 1320px;
+  background: var(--warm-paper);
+  border: 1px solid rgba(180, 154, 105, 0.4);
+  box-shadow: 
+    0 30px 80px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
+  position: relative;
+  border-radius: 3px;
+  padding: 3.5rem 3.5rem 0.5rem;
+  overflow: visible;
+  transition: background 0.6s var(--ease-cinematic);
+}
+
+/* Atmospheric Floating Background Reference Numerals (Reference 01) */
+.stage-numeral {
+  position: absolute;
+  font-family: var(--font-classic);
+  font-size: 0.85rem;
+  color: rgba(23, 21, 19, 0.22);
+  user-select: none;
+  pointer-events: none;
+  letter-spacing: 2px;
+}
+
+.numeral-1 { top: -2.8rem; left: 12%; }
+.numeral-2 { top: 2rem; left: 28%; }
+.numeral-3 { top: -3.2rem; left: 52%; }
+.numeral-4 { top: -4.5rem; right: 18%; }
+.numeral-5 { bottom: -2.8rem; left: 8%; }
+.numeral-vi { bottom: -3.5rem; left: 35%; }
+.numeral-ix { bottom: -2.8rem; right: 15%; }
+
+/* Stage Editorial Header */
+.stage-header {
+  text-align: center;
+  margin-bottom: 2.8rem;
+  position: relative;
+  z-index: 5;
+}
+
+.stage-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--burgundy);
+  margin-bottom: 0.8rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.stage-eyebrow::before,
+.stage-eyebrow::after {
+  content: '';
+  display: inline-block;
+  width: 28px;
+  height: 1px;
+  background: var(--burgundy);
+  opacity: 0.5;
+}
+
+.stage-headline {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 6.2vw, 5.2rem);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  color: var(--ink-black);
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+}
+
+.stage-headline span {
+  font-style: italic;
+  font-weight: 300;
+}
+
+.stage-subline {
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: var(--muted-grey);
+  max-width: 620px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Shelf Mode Switcher & Controls */
+.shelf-controls-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto 1.5rem;
+  padding: 0 0.5rem;
+  z-index: 10;
+  position: relative;
+}
+
+.view-mode-toggles {
+  display: inline-flex;
+  background: rgba(23, 21, 19, 0.06);
+  border: 1px solid rgba(23, 21, 19, 0.12);
+  border-radius: 2px;
+  padding: 3px;
+  gap: 2px;
+}
+
+.view-toggle-btn {
+  background: none;
+  border: none;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted-grey);
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 2px;
+}
+
+.view-toggle-btn.active {
+  background: var(--ink-black);
+  color: var(--warm-paper);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.shelf-legend-hint {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 2px;
+  color: var(--muted-grey);
+  text-transform: uppercase;
+}
+
+/* ==========================================================================
+   THE 3D BOOKSHELF VIEW (REFERENCE 01)
+   ========================================================================== */
+.bookshelf-3d-wrapper {
+  position: relative;
+  width: 100%;
+  perspective: 1800px;
+  perspective-origin: 50% 30%;
+  padding-bottom: 2rem;
+  transition: opacity 0.4s ease;
+}
+
+.bookshelf-pan-container {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: visible;
+  scrollbar-width: thin;
+  scrollbar-color: var(--antique-brass) transparent;
+  padding: 3.5rem 1rem 0;
+  -webkit-overflow-scrolling: touch;
+}
+
+.bookshelf-pan-container::-webkit-scrollbar {
+  height: 5px;
+}
+
+.bookshelf-pan-container::-webkit-scrollbar-thumb {
+  background: var(--antique-brass);
+  border-radius: 3px;
+}
+
+/* The Books Container standing on the shelf */
+.shelf-books-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 14px;
+  min-width: 980px;
+  padding: 0 2.5rem;
+  transform-style: preserve-3d;
+  position: relative;
+  z-index: 10;
+  margin-bottom: -4px; /* Rests precisely on shelf plank */
+}
+
+/* ==========================================================================
+   INDIVIDUAL 3D BOOK CONSTRUCTION
+   ========================================================================== */
+.book-3d {
+  position: relative;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  transform-origin: bottom center;
+  transition: 
+    transform 0.45s var(--ease-cinematic),
+    filter 0.35s ease;
+  user-select: none;
+  outline: none;
+}
+
+/* Specific tilts and heights passed via CSS vars or inline styles */
+.book-3d:hover,
+.book-3d:focus-visible {
+  transform: translateZ(55px) translateY(-26px) rotateY(-8deg) !important;
+  z-index: 50 !important;
+}
+
+.book-3d:focus-visible {
+  outline: 2px solid var(--antique-brass);
+  outline-offset: 6px;
+}
+
+/* 3D BOOK SPINE (Facing the viewer) */
+.book-spine-face {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 6px;
+  box-shadow: 
+    inset 4px 0 8px rgba(255, 255, 255, 0.15),
+    inset -4px 0 8px rgba(0, 0, 0, 0.45),
+    inset 0 4px 5px rgba(255, 255, 255, 0.2),
+    inset 0 -4px 6px rgba(0, 0, 0, 0.6);
+  border-radius: 3px 3px 2px 2px;
+  overflow: hidden;
+  text-align: center;
+}
+
+/* Authentic Cloth Headbands (Top and Bottom of spine) */
+.spine-headband-top,
+.spine-headband-bottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: repeating-linear-gradient(
+    90deg,
+    #B49A69 0px,
+    #B49A69 3px,
+    #29211E 3px,
+    #29211E 6px
+  );
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  z-index: 4;
+}
+
+.spine-headband-top { top: 0; }
+.spine-headband-bottom { bottom: 0; }
+
+/* Spine Header / Publisher Glyph */
+.spine-header-mark {
+  font-family: var(--font-classic);
+  font-size: 0.62rem;
+  letter-spacing: 2px;
+  opacity: 0.85;
+  margin-top: 6px;
+}
+
+/* Vertical Spine Title */
+.spine-title-vertical {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+/* Spine Author at Bottom */
+.spine-author-mark {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: 0.8;
+  margin-bottom: 6px;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+/* 3D BOOK TOP (Paper Block Edge) */
+.book-top-face {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 180px;
+  background: linear-gradient(90deg, #d8d0c2 0%, #ece5d8 50%, #d8d0c2 100%);
+  transform-origin: top center;
+  transform: rotateX(90deg);
+  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.35);
+  border-left: 1px solid rgba(0, 0, 0, 0.2);
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
+  pointer-events: none;
+}
+
+/* 3D BOOK SIDE (Fore-edge Paper Leaves) */
+.book-side-face {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 180px;
+  height: 100%;
+  background: repeating-linear-gradient(
+    90deg,
+    #ede5d8 0px,
+    #e2d9ca 2px,
+    #ede5d8 4px
+  );
+  transform-origin: right center;
+  transform: rotateY(-90deg);
+  box-shadow: inset 10px 0 20px rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+}
+
+/* 3D Cast Shadow on the shelf */
+.book-shelf-shadow {
+  position: absolute;
+  bottom: -6px;
+  left: -10%;
+  width: 120%;
+  height: 14px;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.65) 0%, transparent 75%);
+  filter: blur(4px);
+  transform: rotateX(90deg);
+  pointer-events: none;
+  transition: transform 0.45s ease, opacity 0.45s ease;
+}
+
+.book-3d:hover .book-shelf-shadow {
+  transform: rotateX(90deg) scale(1.4) translateY(18px);
+  opacity: 0.35;
+}
+
+/* ==========================================================================
+   THE ARCHITECTURAL WOODEN SHELF PLANK (REFERENCE 01)
+   ========================================================================== */
+.bookshelf-plank-structure {
+  position: relative;
+  width: 100%;
+  z-index: 20;
+}
+
+/* The Top Surface of the Shelf */
+.shelf-plank-top {
+  height: 22px;
+  background: linear-gradient(
+    180deg,
+    #4a3831 0%,
+    #382A25 50%,
+    #2c201c 100%
+  );
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    0 -4px 10px rgba(0, 0, 0, 0.25);
+  border-top: 1px solid rgba(180, 154, 105, 0.35);
+  position: relative;
+}
+
+/* Polished Antique Brass Inlay Lip */
+.shelf-brass-lip {
+  height: 6px;
+  background: linear-gradient(
+    90deg,
+    #7a6330 0%,
+    #C9A84C 25%,
+    #E8D5A3 50%,
+    #C9A84C 75%,
+    #7a6330 100%
+  );
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+/* Front Bevel / Under-Shelf Drop Shadow */
+.shelf-front-bevel {
+  height: 24px;
+  background: linear-gradient(180deg, #241a17 0%, #17110f 100%);
+  box-shadow: 0 18px 30px rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+}
+
+.shelf-plank-label {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(241, 235, 221, 0.3);
+}
+
+/* ==========================================================================
+   THE 3D ARCHIVE CAROUSEL VIEW (REFERENCE 02)
+   ========================================================================== */
+.archive-carousel-view {
+  display: none;
+  background: var(--deep-navy);
+  border-radius: 4px;
+  padding: 3.5rem 2rem 4rem;
+  margin-top: 1rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.6);
+  perspective: 1400px;
+}
+
+.archive-carousel-view.active {
+  display: block;
+}
+
+/* Carousel Header Meta */
+.carousel-top-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 900px;
+  margin: 0 auto 2.5rem;
+  color: rgba(241, 235, 221, 0.6);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+}
+
+.carousel-year-badge {
+  font-family: var(--font-title);
+  font-size: 1.4rem;
+  color: var(--warm-paper);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Spatial Carousel Track */
+.carousel-3d-track {
+  height: 480px;
+  position: relative;
+  transform-style: preserve-3d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-card-item {
+  position: absolute;
+  width: 310px;
+  height: 440px;
+  border-radius: 8px;
+  background: var(--espresso);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.65);
+  cursor: pointer;
+  transition: transform 0.6s var(--ease-cinematic), opacity 0.6s ease, filter 0.6s ease;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem;
+}
+
+.carousel-card-item.active {
+  z-index: 30;
+  transform: translateX(0) translateZ(120px) rotateY(0deg);
+  opacity: 1;
+  filter: brightness(1.05);
+  border-color: rgba(180, 154, 105, 0.6);
+}
+
+.carousel-card-item.prev-1 {
+  z-index: 20;
+  transform: translateX(-240px) translateZ(0px) rotateY(24deg);
+  opacity: 0.75;
+  filter: brightness(0.75);
+}
+
+.carousel-card-item.next-1 {
+  z-index: 20;
+  transform: translateX(240px) translateZ(0px) rotateY(-24deg);
+  opacity: 0.75;
+  filter: brightness(0.75);
+}
+
+.carousel-card-item.prev-2 {
+  z-index: 10;
+  transform: translateX(-430px) translateZ(-140px) rotateY(38deg);
+  opacity: 0.45;
+  filter: brightness(0.5);
+}
+
+.carousel-card-item.next-2 {
+  z-index: 10;
+  transform: translateX(430px) translateZ(-140px) rotateY(-38deg);
+  opacity: 0.45;
+  filter: brightness(0.5);
+}
+
+.carousel-card-item.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(0) translateZ(-250px);
+}
+
+/* Carousel Bottom Action Pill (Reference 02) */
+.carousel-action-pill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-top: 2rem;
+}
+
+.pill-circular-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: var(--warm-paper);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.pill-circular-btn:hover {
+  background: var(--warm-paper);
+  color: var(--deep-navy);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* ==========================================================================
+   INTERACTIVE BOOK INSPECTOR DRAWER / MODAL
+   ========================================================================== */
+.book-inspector-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(23, 21, 19, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  z-index: 10000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.book-inspector-modal.active {
+  display: flex;
+  animation: fadeInModal 0.35s ease forwards;
+}
+
+@keyframes fadeInModal {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.inspector-card-surface {
+  background: var(--warm-paper);
+  color: var(--ink-black);
+  max-width: 860px;
+  width: 100%;
+  border-radius: 4px;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.7);
+  display: grid;
+  grid-template-columns: 1fr 1.35fr;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(180, 154, 105, 0.4);
+}
+
+.inspector-close-btn {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  color: var(--ink-black);
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background var(--transition-fast);
+  z-index: 10;
+}
+
+.inspector-close-btn:hover {
+  background: rgba(23, 21, 19, 0.08);
+}
+
+.inspector-visual-pane {
+  background: var(--espresso);
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.inspector-book-preview {
+  width: 180px;
+  height: 260px;
+  border-radius: 3px;
+  box-shadow: 
+    -12px 14px 30px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.5rem;
+  text-align: center;
+  position: relative;
+  transform: rotate(-3deg);
+  transition: transform 0.4s ease;
+}
+
+.inspector-book-preview:hover {
+  transform: rotate(0deg) scale(1.03);
+}
+
+.inspector-info-pane {
+  padding: 3.5rem 3rem 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.inspector-category-badge {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--burgundy);
+  margin-bottom: 0.6rem;
+}
+
+.inspector-book-title {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--ink-black);
+  margin-bottom: 0.4rem;
+}
+
+.inspector-book-author {
+  font-family: var(--font-classic);
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  color: var(--antique-brass);
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.inspector-quote {
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--ink-black);
+  padding-left: 1rem;
+  border-left: 2px solid var(--antique-brass);
+  margin-bottom: 1.5rem;
+}
+
+.inspector-note {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: #555;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.inspector-enter-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--ink-black);
+  color: var(--warm-paper);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 14px 28px;
+  border-radius: 2px;
+  transition: all var(--transition-fast);
+  border: 1px solid var(--ink-black);
+}
+
+.inspector-enter-btn:hover {
+  background: var(--burgundy);
+  border-color: var(--burgundy);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(103, 59, 64, 0.35);
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .bookshelf-editorial-stage {
+    padding: 2.5rem 1.5rem 0.5rem;
+  }
+  
+  .stage-numeral {
+    display: none;
+  }
+
+  .inspector-card-surface {
+    grid-template-columns: 1fr;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .inspector-visual-pane {
+    padding: 2rem 1.5rem;
+  }
+
+  .inspector-info-pane {
+    padding: 2rem 1.5rem;
+  }
+}
